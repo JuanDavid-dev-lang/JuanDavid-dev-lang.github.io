@@ -1,36 +1,41 @@
 ---
-title: "RadioUTS - Streaming Platform"
-date: "2025-11-20"
-author: "Alexander Dev"
-category: "Backend & Cloud"
+title: "RadioUTS - Plataforma de Radio en Vivo"
+date: "2026-06-01"
+author: "Juan David Gómez Vargas"
+category: "Streaming & FullStack"
 status: "Completed"
 ---
 
-# RadioUTS - Plataforma Streaming de Audio y Podcasts
+# 📻 RadioUTS - Plataforma de Radio en Vivo
 
-## Visión del Proyecto
+RadioUTS es una plataforma moderna de streaming de radio en vivo construida con **React + Vite** (frontend) y una arquitectura de base de datos híbrida que divide la carga entre **MongoDB Atlas** (telemetría, logs y caché de IA) y **Supabase** (PostgreSQL + `pgvector` para datos relacionales y RAG), controlados desde un backend de **Express.js (Node.js)**.
 
-RadioUTS es una plataforma moderna para la emisión de radio universitaria en vivo y catálogo bajo demanda de podcasts. La plataforma soporta miles de oyentes simultáneos sin degradación de latencia.
-
----
-
-## 🚀 Desafíos Técnicos
-
-- **Baja Latencia**: Mantener el retraso de streaming por debajo de 2 segundos.
-- **Escalabilidad**: Soportar picos de tráfico durante transmisiones especiales.
-- **Formato Adaptativo**: Stream automático según el ancho de banda del usuario (AAC / MP3).
+Permite transmitir contenido de audio, gestionar oyentes, integración con RadioBoss, reproducción de canciones de Spotify y YouTube, y características avanzadas de control de transmisión.
 
 ---
 
-## 🛠 Stack y Tecnologías
+## 🚀 Características Principales
 
-- **Node.js & TypeScript**: Servidor principal de metadata y usuarios.
-- **FFmpeg & Icecast**: Transcodificación e ingesta de audio en directo.
-- **Redis Cache**: Manejo de sesiones y lista de reproducción en tiempo real.
-- **Docker & AWS S3**: Almacenamiento distribuido de episodios grabados.
+- **🎵 Streaming de Audio**: Transmisión en tiempo real de contenido de radio de alta fidelidad.
+- **🎙️ Control de Transmisión**: Reproducción, pausa, volumen y navegación intuitiva de canciones.
+- **📊 Gestión de Oyentes**: Seguimiento de oyentes activos, ubicación geográfica y dispositivos.
+- **🌌 Estética Glassmorphism Premium**: Interfaz moderna con desenfoque de fondo translúcido (`backdrop-blur-lg`) y diseño responsivo de alto nivel.
+- **🎚️ Visualizador de Espectro en Tiempo Real**: Visualización dinámica de ondas sonoras mediante Canvas HTML5 en el reproductor.
+- **👥 Registro de Perfiles Completo**: Tutorial interactivo de bienvenida que captura rol (UTS o externo), género, carrera y medio de escucha.
+- **🤖 RadioBoss Integration**: Control TCP/IP bidireccional con software profesional RadioBoss.
+- **🗺️ Mapa Interactivo**: Visualización gráfica de oyentes por ubicación geográfica en tiempo real.
+- **💬 Chat en Vivo**: Conversaciones por capas con avatares (GerkeAI vs Usuario) y etiquetas alineadas.
+- **📈 Dashboard Administrativo**: Panel de control con estadísticas, gestión de usuarios (RBAC) e historial.
+- **🛠️ Configuración Dinámica de Tiempos**: Configuración en caliente de timeouts para Gemini, TTS y descargas.
+- **🌐 Sincronización en Red**: Funciona en redes locales con auto-detección de dirección IP.
 
 ---
 
-## 💡 Lecciones Aprendidas
+## 📋 Requisitos Previos
 
-> Implementar buffer circular en Redis redujo la sobrecarga del disco en un 80% durante la emisión en vivo.
+- **Node.js**: `>= 18`
+- **pnpm**: (Requerido)
+- **MongoDB**: Local o Atlas para logs y datos volátiles
+- **Supabase**: PostgreSQL con extensión `pgvector` para datos relacionales y base RAG
+- **RadioBoss**: (Opcional, para integración de cabina)
+- **Spotify API Credentials**: (Opcional)

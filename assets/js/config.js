@@ -3,10 +3,13 @@
    ========================================================================== */
 
 const SITE_CONFIG = {
-  name: "Juan David",
-  title: "Ingeniero de Software & Arquitecto AI | Personal Portfolio",
+  name: "Juan David Gómez Vargas",
+  shortName: "Juan David",
+  title: "Desarrollador Web & Ingeniero de Sistemas | Colombia",
   githubUsername: "JuanDavid-dev-lang",
-  email: "juandavid.dev@example.com",
+  email: "juandavid@example.com",
+  location: "Colombia 🇨🇴",
+  university: "Unidades Tecnológicas de Santander (UTS)",
   social: {
     github: "https://github.com/JuanDavid-dev-lang",
     linkedin: "https://linkedin.com",
@@ -30,10 +33,10 @@ const I18N_DICTIONARY = {
     nav_experience: "Experiencia",
     nav_contact: "Contacto",
     
-    hero_badge: "Disponible para Nuevos Retos & Consultoría",
+    hero_badge: "Disponible para proyectos y consultoría técnica ✦ Colombia 🇨🇴",
     hero_greeting: "Hola, soy",
-    hero_role: "Ingeniero de Software Senior & Arquitecto de Sistemas",
-    hero_description: "Especializado en diseñar e implementar aplicaciones distribuidas de alto rendimiento, modelos de inteligencia artificial, arquitecturas cloud y soluciones web modernas.",
+    hero_role: "Desarrollador Web & Estudiante de Ingeniería de Sistemas",
+    hero_description: "Colombiano de 20 años, graduado en Tecnología en Desarrollo de Sistemas Informáticos y actualmente cursando Ingeniería de Sistemas en las Unidades Tecnológicas de Santander (UTS). Apasionado por el desarrollo web, la IA y la construcción de herramientas que generen impacto real.",
     btn_projects: "Explorar Proyectos",
     btn_github: "GitHub Perfil",
     btn_contact: "Contactar",
@@ -79,10 +82,10 @@ const I18N_DICTIONARY = {
     nav_experience: "Experience",
     nav_contact: "Contact",
 
-    hero_badge: "Available for New Challenges & Consulting",
-    hero_greeting: "Hello, I am",
-    hero_role: "Senior Software Engineer & Systems Architect",
-    hero_description: "Specialized in designing and deploying high-performance distributed applications, artificial intelligence models, cloud architectures, and modern web solutions.",
+    hero_badge: "Available for projects and technical consulting ✦ Colombia 🇨🇴",
+    hero_greeting: "Hello, I'm",
+    hero_role: "Web Developer & Systems Engineering Student",
+    hero_description: "20-year-old Colombian developer, graduated in Information Systems Development Technology and currently studying Systems Engineering at Unidades Tecnológicas de Santander (UTS). Passionate about web development, AI, and building tools that create real impact.",
     btn_projects: "Explore Projects",
     btn_github: "GitHub Profile",
     btn_contact: "Contact Me",
