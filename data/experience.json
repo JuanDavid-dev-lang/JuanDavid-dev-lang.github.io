@@ -1,26 +1,53 @@
 [
   {
-    "period": "2026 - Presente",
-    "role": "Estudiante de Ingeniería de Sistemas (2do Semestre 2026)",
-    "company": "Unidades Tecnológicas de Santander (UTS)",
-    "location": "Bucaramanga, Colombia 🇨🇴",
-    "description": "Continuación de la formación profesional en ingeniería de software, arquitectura de sistemas distribuida, ingeniería de requisitos y desarrollo avanzado.",
-    "skills": ["Ingeniería de Sistemas", "Arquitectura de Software", "Machine Learning", "Big Data"]
+    "year": "2026",
+    "title": "Ingeniería de Sistemas",
+    "subtitle": "Unidades Tecnológicas de Santander (UTS)",
+    "description": "Continuación de la formación profesional como Ingeniero de Sistemas desde el segundo semestre del 2026, profundizando en arquitectura de software, sistemas distribuidos, ingeniería de requisitos y desarrollo avanzado.",
+    "icon": "fas fa-graduation-cap",
+    "color": "#38bdf8",
+    "skills": ["Ingeniería de Sistemas", "Arquitectura de Software", "Machine Learning", "Big Data"],
+    "type": "education",
+    "current": true
   },
   {
-    "period": "2023 - 2026",
-    "role": "Tecnólogo en Desarrollo de Sistemas Informáticos (Graduado)",
-    "company": "Unidades Tecnológicas de Santander (UTS)",
-    "location": "Bucaramanga, Colombia 🇨🇴",
-    "description": "Título tecnológico obtenido exitosamente. Desarrollo de proyectos destacados como RadioUTS, PIPAC e InventarioPro v2.0.",
-    "skills": ["React", "Express.js", "Python", "PHP", "MySQL", "MongoDB", "Supabase", "Docker"]
+    "year": "2026",
+    "title": "Proyectos con IA y Ciencia de Datos",
+    "subtitle": "PIPAC & InventarioPro V2.0",
+    "description": "Desarrollo de plataformas avanzadas aplicando Machine Learning, análisis predictivo, ciencia de datos y modelos de IA para resolver problemas reales en seguridad ciudadana y gestión empresarial.",
+    "icon": "fas fa-brain",
+    "color": "#818cf8",
+    "skills": ["Python", "Scikit-Learn", "XGBoost", "Apache Spark", "FastAPI", "Docker"],
+    "type": "project"
   },
   {
-    "period": "2024 - Presente",
-    "role": "Desarrollador Web Freelance & Estilos",
-    "company": "Proyectos Independientes",
-    "location": "Colombia 🇨🇴",
-    "description": "Desarrollo de sitios y plataformas web en HTML5, CSS3 puro, JavaScript Vanilla y maquetación/personalización avanzada de sitios WordPress mediante estilos.",
-    "skills": ["HTML5", "CSS3", "JavaScript", "WordPress", "Custom Styles", "Glassmorphism"]
+    "year": "2025",
+    "title": "RadioUTS - Plataforma de Streaming",
+    "subtitle": "Proyecto Full Stack Destacado",
+    "description": "Desarrollo completo de una plataforma de radio en vivo con arquitectura híbrida, integraciones con Spotify, YouTube y RadioBoss, chat con IA y visualizador de espectro en tiempo real.",
+    "icon": "fas fa-broadcast-tower",
+    "color": "#34d399",
+    "skills": ["React", "Express.js", "MongoDB", "Supabase", "Socket.IO", "Docker"],
+    "type": "project"
+  },
+  {
+    "year": "2024",
+    "title": "Desarrollo Web Freelance",
+    "subtitle": "Proyectos Independientes",
+    "description": "Inicio de proyectos independientes de desarrollo web, creación de sitios WordPress personalizados, landing pages y plataformas web con HTML5, CSS3 y JavaScript.",
+    "icon": "fas fa-laptop-code",
+    "color": "#fbbf24",
+    "skills": ["HTML5", "CSS3", "JavaScript", "WordPress", "Glassmorphism"],
+    "type": "work"
+  },
+  {
+    "year": "2023",
+    "title": "Tecnólogo en Desarrollo de Sistemas Informáticos",
+    "subtitle": "Unidades Tecnológicas de Santander (UTS)",
+    "description": "Inicio de la formación como Tecnólogo en Desarrollo de Sistemas Informáticos, adquiriendo bases sólidas en programación, bases de datos, redes y desarrollo de software.",
+    "icon": "fas fa-university",
+    "color": "#fb7185",
+    "skills": ["Programación", "Bases de Datos", "Redes", "Desarrollo de Software"],
+    "type": "education"
   }
 ]

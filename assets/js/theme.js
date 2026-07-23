@@ -1,48 +1,59 @@
 /* ==========================================================================
-   Antigravity Engine - Dark / Light Theme Controller
+   JuanDavid.dev — Theme Manager (Dark/Light Mode)
    ========================================================================== */
 
-class ThemeManager {
-  constructor() {
-    this.STORAGE_KEY = 'antigravity_theme';
-    this.currentTheme = localStorage.getItem(this.STORAGE_KEY) || 'dark';
-    this.init();
-  }
+const themeManager = (() => {
+  const STORAGE_KEY = 'jd-theme';
 
-  init() {
-    this.applyTheme(this.currentTheme);
-    
-    // Listen for theme toggle button clicks
-    document.addEventListener('DOMContentLoaded', () => {
-      const toggleBtns = document.querySelectorAll('.theme-toggle');
-      toggleBtns.forEach(btn => {
-        btn.addEventListener('click', () => this.toggleTheme());
-        this.updateButtonIcon(btn, this.currentTheme);
-      });
+  function init() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = saved || (prefersDark ? 'dark' : 'dark'); // Default to dark
+
+    applyTheme(theme);
+    bindToggle();
+
+    // Listen for OS theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
     });
   }
 
-  applyTheme(theme) {
+  function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    this.currentTheme = theme;
-    localStorage.setItem(this.STORAGE_KEY, theme);
+    updateIcon(theme);
 
-    const toggleBtns = document.querySelectorAll('.theme-toggle');
-    toggleBtns.forEach(btn => this.updateButtonIcon(btn, theme));
+    // Update meta theme-color
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.content = theme === 'dark' ? '#060910' : '#f8fafc';
+    }
   }
 
-  toggleTheme() {
-    const newTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
-    this.applyTheme(newTheme);
+  function updateIcon(theme) {
+    const btn = document.querySelector('.theme-toggle');
+    if (!btn) return;
+    const icon = btn.querySelector('i');
+    if (icon) {
+      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
   }
 
-  updateButtonIcon(button, theme) {
-    if (!button) return;
-    button.innerHTML = theme === 'dark' 
-      ? '<i class="fas fa-sun" aria-hidden="true"></i>' 
-      : '<i class="fas fa-moon" aria-hidden="true"></i>';
-    button.setAttribute('aria-label', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+  function toggle() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(STORAGE_KEY, next);
+    applyTheme(next);
   }
-}
 
-const themeManager = new ThemeManager();
+  function bindToggle() {
+    const btn = document.querySelector('.theme-toggle');
+    if (btn) {
+      btn.addEventListener('click', toggle);
+    }
+  }
+
+  return { init };
+})();

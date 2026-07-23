@@ -1,69 +1,67 @@
 /* ==========================================================================
-   Antigravity Engine - Internationalization (i18n) Controller
+   JuanDavid.dev — i18n Internationalization System
    ========================================================================== */
 
-class LanguageManager {
-  constructor() {
-    this.STORAGE_KEY = 'antigravity_lang';
-    this.currentLang = localStorage.getItem(this.STORAGE_KEY) || 'es';
-    this.init();
+const i18nManager = (() => {
+  const STORAGE_KEY = 'jd-lang';
+  let currentLang = 'es';
+
+  function init() {
+    currentLang = localStorage.getItem(STORAGE_KEY) || 'es';
+    applyLanguage(currentLang);
+    bindToggle();
   }
 
-  init() {
-    document.addEventListener('DOMContentLoaded', () => {
-      this.translatePage();
-      
-      const langBtns = document.querySelectorAll('.lang-toggle');
-      langBtns.forEach(btn => {
-        btn.addEventListener('click', () => this.toggleLanguage());
-        this.updateButtonText(btn);
-      });
-    });
-  }
-
-  setLanguage(lang) {
-    if (!I18N_DICTIONARY[lang]) return;
-    this.currentLang = lang;
-    localStorage.setItem(this.STORAGE_KEY, lang);
-    this.translatePage();
-
-    const langBtns = document.querySelectorAll('.lang-toggle');
-    langBtns.forEach(btn => this.updateButtonText(btn));
-  }
-
-  toggleLanguage() {
-    const newLang = this.currentLang === 'es' ? 'en' : 'es';
-    this.setLanguage(newLang);
-  }
-
-  translatePage() {
-    const dict = I18N_DICTIONARY[this.currentLang];
+  function applyLanguage(lang) {
+    currentLang = lang;
+    const dict = I18N[lang];
     if (!dict) return;
 
-    // Elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict[key]) {
-        if (el.tagName === 'INPUT' && el.getAttribute('placeholder')) {
-          el.setAttribute('placeholder', dict[key]);
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = dict[key];
         } else {
           el.textContent = dict[key];
         }
       }
     });
 
-    document.documentElement.setAttribute('lang', this.currentLang);
+    document.documentElement.lang = lang;
+    updateToggleUI(lang);
   }
 
-  updateButtonText(btn) {
+  function updateToggleUI(lang) {
+    const btn = document.querySelector('.lang-toggle');
     if (!btn) return;
-    btn.innerHTML = `<span class="lang-code">${this.currentLang.toUpperCase()}</span>`;
-    btn.setAttribute('aria-label', `Change language (Current: ${this.currentLang.toUpperCase()})`);
+    const code = btn.querySelector('.lang-code');
+    if (code) {
+      code.textContent = lang.toUpperCase();
+    }
   }
 
-  getText(key) {
-    return I18N_DICTIONARY[this.currentLang]?.[key] || key;
+  function toggle() {
+    const next = currentLang === 'es' ? 'en' : 'es';
+    localStorage.setItem(STORAGE_KEY, next);
+    applyLanguage(next);
   }
-}
 
-const langManager = new LanguageManager();
+  function bindToggle() {
+    const btn = document.querySelector('.lang-toggle');
+    if (btn) {
+      btn.addEventListener('click', toggle);
+    }
+  }
+
+  function t(key) {
+    const dict = I18N[currentLang];
+    return dict ? (dict[key] || key) : key;
+  }
+
+  function getLang() {
+    return currentLang;
+  }
+
+  return { init, t, getLang, applyLanguage };
+})();

@@ -3,59 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juan David | Senior Software Engineer & AI Architect</title>
-  <meta name="description" content="Portafolio profesional de Ingeniería de Software, Inteligencia Artificial, Desarrollo Web, Cloud y DevOps. Proyectos destacados y blog técnico.">
-  <meta name="keywords" content="Software Engineer, Artificial Intelligence, Web Development, Python, FastAPI, Docker, TypeScript, GitHub Pages">
-  <meta name="author" content="Juan David">
+  <title>Juan David Gómez Vargas | Desarrollador Full Stack & Estudiante de Ingeniería de Sistemas</title>
+  
+  <meta name="description" content="Portafolio profesional de Juan David Gómez Vargas. Especializado en desarrollo Full Stack, Inteligencia Artificial, Ciencia de Datos y Arquitectura de Software.">
+  <meta name="keywords" content="Juan David Gomez Vargas, Software Engineer, Artificial Intelligence, Web Development, Python, React, Next.js, FastAPI, Docker, Supabase, UTS, Colombia">
+  <meta name="author" content="Juan David Gómez Vargas">
   <link rel="canonical" href="https://juandavid-dev-lang.github.io/">
 
-  <!-- Open Graph / Social Media -->
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://juandavid-dev-lang.github.io/">
-  <meta property="og:title" content="Juan David | Senior Software Engineer & AI Architect">
-  <meta property="og:description" content="Portafolio profesional de Ingeniería de Software, Inteligencia Artificial y Blog Técnico.">
+  <meta property="og:title" content="Juan David Gómez Vargas | Desarrollador Full Stack">
+  <meta property="og:description" content="Portafolio profesional especializado en desarrollo Full Stack, Inteligencia Artificial, Ciencia de Datos y Arquitectura de Software.">
   <meta property="og:image" content="assets/images/og-cover.png">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Juan David | Senior Software Engineer">
-  <meta name="twitter:description" content="Portafolio profesional de Ingeniería de Software y Blog Técnico.">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://juandavid-dev-lang.github.io/">
+  <meta property="twitter:title" content="Juan David Gómez Vargas | Desarrollador Full Stack">
+  <meta property="twitter:description" content="Portafolio profesional especializado en desarrollo Full Stack, Inteligencia Artificial, Ciencia de Datos y Arquitectura de Software.">
+  <meta property="twitter:image" content="assets/images/og-cover.png">
 
   <!-- Favicon & PWA -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#07090e">
+  <meta name="theme-color" content="#060910">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <!-- Interactive Canvas & Glow Background -->
+
+  <!-- Loading Screen -->
+  <div id="loader-screen" class="loader-screen">
+    <div class="loader-logo text-gradient">&lt;JuanDavid.dev /&gt;</div>
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Interactive Background Canvas -->
   <canvas id="bg-canvas"></canvas>
   <div class="aurora-bg"></div>
-  <div class="custom-cursor"></div>
-  <div class="reading-progress-bar"></div>
 
-  <!-- Header / Navbar -->
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress"></div>
+
+  <!-- Header / Navigation -->
   <header class="navbar">
     <div class="container">
-      <a href="index.html" class="nav-brand">
-        <i class="fas fa-terminal text-gradient"></i>
+      <a href="#hero" class="nav-brand">
+        <i class="fas fa-code text-gradient"></i>
         <span>JuanDavid<span class="text-gradient">.dev</span></span>
-        <span class="brand-badge">v2.5</span>
+        <span class="brand-version">v3.0</span>
       </a>
 
       <nav>
         <ul class="nav-menu">
-          <li><a href="index.html" class="nav-link active" data-i18n="nav_home">Inicio</a></li>
-          <li><a href="proyectos.html" class="nav-link" data-i18n="nav_projects">Proyectos</a></li>
-          <li><a href="blog.html" class="nav-link" data-i18n="nav_blog">Blog</a></li>
-          <li><a href="tecnologias.html" class="nav-link" data-i18n="nav_tech">Tecnologías</a></li>
-          <li><a href="experiencia.html" class="nav-link" data-i18n="nav_experience">Experiencia</a></li>
-          <li><a href="contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a></li>
+          <li><a href="#hero" class="nav-link active" data-i18n="nav_home">Inicio</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="nav_about">Sobre Mí</a></li>
+          <li><a href="#services" class="nav-link" data-i18n="nav_services">Servicios</a></li>
+          <li><a href="#technologies" class="nav-link" data-i18n="nav_tech">Tecnologías</a></li>
+          <li><a href="#timeline" class="nav-link" data-i18n="nav_timeline">Trayectoria</a></li>
+          <li><a href="#projects" class="nav-link" data-i18n="nav_projects">Proyectos</a></li>
+          <li><a href="#blog" class="nav-link" data-i18n="nav_blog">Blog</a></li>
+          <li><a href="#github" class="nav-link" data-i18n="nav_github">GitHub</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contacto</a></li>
         </ul>
       </nav>
 
@@ -73,173 +89,372 @@
     </div>
   </header>
 
-  <!-- Main Content Area -->
-  <main class="main-content">
+  <!-- Main Content -->
+  <main>
+    
     <!-- Hero Section -->
-    <section class="hero container">
-      <div class="hero-profile-wrapper">
+    <section id="hero" class="hero">
+      <div class="hero-profile hero-animate-1">
         <div class="hero-avatar-glow"></div>
-        <img src="https://avatars.githubusercontent.com/u/152912444?v=4" alt="Juan David Profile" class="hero-avatar">
+        <div class="hero-avatar-ring"></div>
+        <img src="https://avatars.githubusercontent.com/u/152912444?v=4" alt="Juan David Gómez Vargas" class="hero-avatar">
       </div>
 
-      <div class="hero-badge">
+      <div class="hero-badge hero-animate-2">
         <span class="status-dot"></span>
-        <span data-i18n="hero_badge">Disponible para Nuevos Retos & Consultoría</span>
+        <span data-i18n="hero_badge">Disponible para proyectos y consultoría</span>
       </div>
 
-      <h1>
-        <span data-i18n="hero_greeting">Hola, soy</span> <span class="text-gradient">Juan David</span>,<br>
-        <span data-i18n="hero_role">Ingeniero de Software Senior & Arquitecto AI</span>
+      <h1 class="hero-animate-3">
+        <span data-i18n="hero_greeting">Hola, soy</span> <span class="text-gradient">Juan David</span>
+        <span class="hero-role">
+          &lt;<span class="text-gradient">Full Stack & AI Engineer</span> /&gt;
+        </span>
       </h1>
 
-      <p class="lead" data-i18n="hero_description">
-        Especializado en diseñar e implementar aplicaciones distribuidas de alto rendimiento, modelos de inteligencia artificial, arquitecturas cloud y soluciones web modernas.
+      <p class="hero-description hero-animate-4" data-i18n="hero_description">
+        Colombiano de 20 años, Tecnólogo en Desarrollo de Sistemas Informáticos y estudiante de Ingeniería de Sistemas en la UTS. Apasionado por construir software moderno, inteligencia artificial y soluciones que generan impacto real.
       </p>
 
-      <div class="btn-group">
-        <a href="proyectos.html" class="btn btn-primary">
+      <div class="btn-group hero-animate-5">
+        <a href="#projects" class="btn btn-primary">
           <i class="fas fa-rocket"></i>
           <span data-i18n="btn_projects">Explorar Proyectos</span>
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary">
+        <a href="https://github.com/JuanDavid-dev-lang" target="_blank" rel="noopener" class="btn btn-secondary">
           <i class="fab fa-github"></i>
-          <span data-i18n="btn_github">GitHub Perfil</span>
+          <span data-i18n="btn_github">GitHub</span>
         </a>
-        <a href="contacto.html" class="btn btn-outline">
+        <a href="#contact" class="btn btn-outline">
           <i class="far fa-envelope"></i>
           <span data-i18n="btn_contact">Contactar</span>
         </a>
       </div>
+
+      <div class="hero-stats hero-animate-6">
+        <div class="hero-stat">
+          <span class="hero-stat-number" id="hero-stat-years">3+</span>
+          <span class="hero-stat-label" data-i18n="stat_years">Años Programando</span>
+        </div>
+        <div style="width: 1px; background: var(--border-color); align-self: stretch;"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-number" id="hero-stat-techs">25+</span>
+          <span class="hero-stat-label" data-i18n="stat_techs">Tecnologías</span>
+        </div>
+        <div style="width: 1px; background: var(--border-color); align-self: stretch;"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-number" id="hero-stat-projects">12+</span>
+          <span class="hero-stat-label" data-i18n="stat_projects">Proyectos</span>
+        </div>
+      </div>
     </section>
 
-    <!-- Stats Dashboard Section -->
-    <section class="container stats-dashboard">
-      <div class="section-header reveal">
-        <span class="subtitle">Métricas en Tiempo Real</span>
-        <h2>Dashboard de Actividad & GitHub API</h2>
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label" data-i18n="about_label">Conóceme</span>
+          <h2 data-i18n="about_title">Sobre Mí</h2>
+          <p data-i18n="about_subtitle">Desarrollador con visión en IA y software moderno</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text reveal-left">
+            <h3 data-i18n="about_philosophy_title">Filosofía de Desarrollo</h3>
+            <p data-i18n="about_philosophy_desc">Código limpio, modular y documentado. Cada línea debe tener propósito y cada componente debe ser reutilizable.</p>
+            
+            <h3 data-i18n="about_goal_title">Objetivos Profesionales</h3>
+            <p data-i18n="about_goal_desc">Convertirme en arquitecto de software especializado en IA y sistemas distribuidos que generen impacto positivo.</p>
+            
+            <p data-i18n="about_p1">Soy un desarrollador de software colombiano de 20 años con una profunda pasión por la tecnología y la innovación. Me gradué como Tecnólogo en Desarrollo de Sistemas Informáticos y actualmente continúo mi formación profesional como Ingeniero de Sistemas en las Unidades Tecnológicas de Santander (UTS), desde el segundo semestre del 2026.</p>
+            <p data-i18n="about_p2">Mi enfoque abarca el desarrollo Full Stack, la Inteligencia Artificial, la Ciencia de Datos, el Machine Learning, Cloud Computing y la arquitectura de software escalable.</p>
+
+            <div class="about-philosophy">
+              <div class="philosophy-card">
+                <i class="fas fa-brain" style="color: var(--accent-purple);"></i>
+                <h4 data-i18n="philosophy_ai">Inteligencia Artificial</h4>
+                <p data-i18n="philosophy_ai_desc">ML, Deep Learning y NLP</p>
+              </div>
+              <div class="philosophy-card">
+                <i class="fas fa-chart-pie" style="color: var(--accent-cyan);"></i>
+                <h4 data-i18n="philosophy_data">Ciencia de Datos</h4>
+                <p data-i18n="philosophy_data_desc">Análisis, predicción y visualización</p>
+              </div>
+              <div class="philosophy-card">
+                <i class="fas fa-server" style="color: var(--accent-emerald);"></i>
+                <h4 data-i18n="philosophy_backend">Backend Robusto</h4>
+                <p data-i18n="philosophy_backend_desc">APIs escalables y microservicios</p>
+              </div>
+              <div class="philosophy-card">
+                <i class="fas fa-laptop-code" style="color: var(--accent-rose);"></i>
+                <h4 data-i18n="philosophy_frontend">Frontend Moderno</h4>
+                <p data-i18n="philosophy_frontend_desc">React, UX/UI premium</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-stats reveal-right">
+            <div class="glass-panel stat-card float-animation">
+              <i class="fas fa-calendar-alt stat-icon" style="color: var(--accent-cyan);"></i>
+              <div class="stat-number">3+</div>
+              <div class="stat-label" data-i18n="stat_years">Años Programando</div>
+            </div>
+            <div class="glass-panel stat-card float-animation-delay">
+              <i class="fas fa-code stat-icon" style="color: var(--accent-purple);"></i>
+              <div class="stat-number">25+</div>
+              <div class="stat-label" data-i18n="stat_techs">Tecnologías</div>
+            </div>
+            <div class="glass-panel stat-card float-animation-delay">
+              <i class="fas fa-tasks stat-icon" style="color: var(--accent-emerald);"></i>
+              <div class="stat-number">12+</div>
+              <div class="stat-label" data-i18n="stat_projects">Proyectos</div>
+            </div>
+            <div class="glass-panel stat-card float-animation">
+              <i class="fas fa-graduation-cap stat-icon" style="color: var(--accent-amber);"></i>
+              <div class="stat-number">8+</div>
+              <div class="stat-label" data-i18n="stat_learning">Aprendiendo</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="grid-4 mb-4">
-        <div class="glass-panel stat-card glow-card reveal reveal-delay-1">
-          <i class="fas fa-folder-open stat-icon"></i>
-          <div class="stat-number" id="stat-projects-count">12+</div>
-          <div class="stat-label" data-i18n="stats_projects">Proyectos Realizados</div>
+    <!-- Services Section -->
+    <section id="services" class="section" style="background: rgba(0, 0, 0, 0.15);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label" data-i18n="services_label">Servicios</span>
+          <h2 data-i18n="services_title">¿En qué puedo ayudarte?</h2>
+          <p data-i18n="services_subtitle">Desarrollo soluciones tecnológicas completas con las mejores prácticas del mercado.</p>
         </div>
 
-        <div class="glass-panel stat-card glow-card reveal reveal-delay-2">
-          <i class="fab fa-github stat-icon"></i>
-          <div class="stat-number" id="stat-repos-count">--</div>
-          <div class="stat-label" data-i18n="stats_repos">Repositorios Públicos</div>
-        </div>
-
-        <div class="glass-panel stat-card glow-card reveal reveal-delay-3">
-          <i class="fas fa-star stat-icon"></i>
-          <div class="stat-number" id="stat-stars-count">--</div>
-          <div class="stat-label">Estrellas Recibidas</div>
-        </div>
-
-        <div class="glass-panel stat-card glow-card reveal">
-          <i class="fas fa-code-branch stat-icon"></i>
-          <div class="stat-number">1,450+</div>
-          <div class="stat-label" data-i18n="stats_contributions">Contribuciones 2026</div>
+        <div id="services-container" class="services-grid">
+          <!-- Dynamically Rendered -->
         </div>
       </div>
+    </section>
 
-      <!-- Language Chart Widget -->
-      <div class="glass-panel reveal" style="padding: 1.75rem; max-width: 900px; margin: 0 auto;">
-        <h3 style="font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-chart-pie text-gradient"></i>
-          Desglose de Lenguajes Más Utilizados (GitHub REST API)
-        </h3>
-        <div id="github-lang-chart">
-          <div style="text-align: center; color: var(--text-muted); padding: 1rem;">Cargando datos de GitHub API...</div>
+    <!-- Technologies Section -->
+    <section id="technologies" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label" data-i18n="tech_label">Stack Tecnológico</span>
+          <h2 data-i18n="tech_title">Tecnologías & Herramientas</h2>
+          <p data-i18n="tech_subtitle">Dominio de herramientas modernas para desarrollo Full Stack, IA y DevOps.</p>
+        </div>
+
+        <div id="tech-filters" class="tech-categories reveal">
+          <!-- Dynamically Rendered -->
+        </div>
+
+        <div id="tech-matrix-container" class="tech-grid">
+          <!-- Dynamically Rendered -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="section" style="background: rgba(0, 0, 0, 0.15);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label" data-i18n="timeline_label">Trayectoria</span>
+          <h2 data-i18n="timeline_title">Mi Camino Profesional</h2>
+          <p data-i18n="timeline_subtitle">Desde el aprendizaje de los fundamentos hasta la construcción de soluciones con IA.</p>
+        </div>
+
+        <div id="timeline-container" class="timeline">
+          <!-- Dynamically Rendered -->
         </div>
       </div>
     </section>
 
     <!-- Featured Projects Section -->
-    <section class="container" style="margin-top: 5rem;">
-      <div class="section-header reveal">
-        <span class="subtitle" data-i18n="projects_subtitle">CASOS DE ESTUDIO Y PROYECTOS DESTACADOS</span>
-        <h2 data-i18n="projects_title">Proyectos Destacados</h2>
-        <p>Una selección de los proyectos más complejos e innovadores en los que he trabajado.</p>
-      </div>
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label" data-i18n="projects_label">Portafolio</span>
+          <h2 data-i18n="projects_title">Proyectos Destacados</h2>
+          <p data-i18n="projects_subtitle">Una selección de los proyectos más complejos e innovadores en los que he trabajado.</p>
+        </div>
 
-      <div id="featured-projects-container" class="grid-3">
-        <!-- Rendered by app.js -->
-      </div>
+        <div id="featured-projects-container" class="projects-grid">
+          <!-- Dynamically Rendered -->
+        </div>
 
-      <div style="text-align: center; margin-top: 3rem;">
-        <a href="proyectos.html" class="btn btn-secondary">
-          <span>Ver Catálogo Completo de Proyectos</span>
-          <i class="fas fa-arrow-right"></i>
-        </a>
+        <div style="margin-top: var(--space-16);">
+          <div class="section-header reveal" style="margin-bottom: var(--space-8);">
+            <span class="section-label" data-i18n="projects_other_label">Más Proyectos</span>
+            <h3 data-i18n="projects_other_title">Otros Proyectos & Experimentos</h3>
+            <p data-i18n="projects_other_subtitle">Proyectos personales, herramientas experimentales, laboratorios de IA y contribuciones Open Source.</p>
+          </div>
+          <div id="other-projects-container" class="other-projects-grid">
+            <!-- Dynamically Rendered -->
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Recent Blog Articles Section -->
-    <section class="container" style="margin-top: 5rem;">
-      <div class="section-header reveal">
-        <span class="subtitle" data-i18n="blog_subtitle">PUBLICACIONES, TUTORIALES Y APRENDIZAJES</span>
-        <h2 data-i18n="blog_title">Últimos Artículos Técnicos</h2>
-      </div>
+    <!-- Blog Section -->
+    <section id="blog" class="section" style="background: rgba(0, 0, 0, 0.15);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label" data-i18n="blog_label">Blog Técnico</span>
+          <h2 data-i18n="blog_title">Artículos & Tutoriales</h2>
+          <p data-i18n="blog_subtitle">Publicaciones sobre IA, desarrollo web, backend, buenas prácticas y arquitectura de software.</p>
+        </div>
 
-      <div id="recent-posts-container" class="grid-3">
-        <!-- Rendered by app.js -->
+        <div id="recent-posts-container" class="blog-grid">
+          <!-- Dynamically Rendered -->
+        </div>
       </div>
     </section>
 
-    <!-- Contact Teaser Section -->
-    <section class="container" style="margin-top: 6rem;">
-      <div class="glass-panel glow-card reveal" style="padding: 3.5rem 2rem; text-align: center; background: linear-gradient(135deg, rgba(13,17,26,0.9), rgba(56,189,248,0.08));">
-        <h2 style="margin-bottom: 1rem;" data-i18n="contact_title">¿Tienes un Proyecto en Mente?</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;" data-i18n="contact_subtitle">
-          Estoy disponible para consultoría técnica, desarrollo de arquitectura de software y colaboraciones.
-        </p>
-        <a href="contacto.html" class="btn btn-primary">
-          <i class="far fa-paper-plane"></i>
-          <span>Enviar Mensaje</span>
-        </a>
+    <!-- GitHub Stats Section -->
+    <section id="github" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label" data-i18n="github_label">GitHub</span>
+          <h2 data-i18n="github_title">Actividad en GitHub</h2>
+          <p data-i18n="github_subtitle">Estadísticas en tiempo real consumidas directamente desde la API de GitHub.</p>
+        </div>
+
+        <div class="github-stats-grid">
+          <div class="glass-panel github-stat-card reveal hover-scale">
+            <i class="fab fa-github" style="color: var(--text-primary);"></i>
+            <div class="github-stat-number" id="stat-repos-count">--</div>
+            <div class="github-stat-label" data-i18n="github_repos">Repositorios</div>
+          </div>
+          <div class="glass-panel github-stat-card reveal hover-scale">
+            <i class="fas fa-star" style="color: var(--accent-amber);"></i>
+            <div class="github-stat-number" id="stat-stars-count">--</div>
+            <div class="github-stat-label" data-i18n="github_stars">Estrellas</div>
+          </div>
+          <div class="glass-panel github-stat-card reveal hover-scale">
+            <i class="fas fa-code-branch" style="color: var(--accent-cyan);"></i>
+            <div class="github-stat-number" id="stat-forks-count">--</div>
+            <div class="github-stat-label" data-i18n="github_forks">Forks</div>
+          </div>
+          <div class="glass-panel github-stat-card reveal hover-scale">
+            <i class="fas fa-bolt" style="color: var(--accent-emerald);"></i>
+            <div class="github-stat-number">1.4K+</div>
+            <div class="github-stat-label">Contribuciones</div>
+          </div>
+        </div>
+
+        <div class="glass-panel github-lang-chart reveal">
+          <h3 data-i18n="github_lang_title">Lenguajes Más Utilizados</h3>
+          <div id="github-lang-chart">
+            <div style="text-align: center; color: var(--text-muted); padding: var(--space-4);">Cargando estadísticas de GitHub...</div>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="background: rgba(0, 0, 0, 0.15);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label" data-i18n="contact_label">Contacto</span>
+          <h2 data-i18n="contact_title">¿Tienes un proyecto en mente?</h2>
+          <p data-i18n="contact_subtitle">Estoy disponible para consultoría técnica, desarrollo de software y colaboraciones.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info reveal-left">
+            <h3 data-i18n="contact_info_title">Conectemos</h3>
+            <p data-i18n="contact_info_desc">Si tienes una idea, un proyecto o simplemente quieres conversar sobre tecnología, no dudes en escribirme.</p>
+            
+            <div class="contact-links">
+              <a href="mailto:juandavid@example.com" class="contact-link-item">
+                <i class="far fa-envelope"></i>
+                <span>juandavid@example.com</span>
+              </a>
+              <a href="https://github.com/JuanDavid-dev-lang" target="_blank" rel="noopener" class="contact-link-item">
+                <i class="fab fa-github"></i>
+                <span>github.com/JuanDavid-dev-lang</span>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link-item">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn Perfil</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="glass-panel contact-form reveal-right">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contact-name-input" data-i18n="contact_name">Nombre</label>
+                <input type="text" id="contact-name-input" data-i18n="contact_name_placeholder" placeholder="Tu nombre completo">
+                <span class="form-error">Error</span>
+              </div>
+              <div class="form-group">
+                <label for="contact-email-input" data-i18n="contact_email">Correo Electrónico</label>
+                <input type="email" id="contact-email-input" data-i18n="contact_email_placeholder" placeholder="tu@email.com">
+                <span class="form-error">Error</span>
+              </div>
+              <div class="form-group">
+                <label for="contact-message-input" data-i18n="contact_message">Mensaje</label>
+                <textarea id="contact-message-input" data-i18n="contact_message_placeholder" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+                <span class="form-error">Error</span>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <i class="far fa-paper-plane"></i>
+                <span data-i18n="contact_send">Enviar Mensaje</span>
+              </button>
+            </form>
+
+            <div id="contact-success-container" class="form-success">
+              <i class="fas fa-check-circle"></i>
+              <h3 data-i18n="contact_success_title">¡Mensaje Enviado!</h3>
+              <p data-i18n="contact_success_desc">Gracias por contactarme. Te responderé lo antes posible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
-      <div>
-        <a href="index.html" class="nav-brand" style="font-size: 1.1rem;">
-          <i class="fas fa-terminal text-gradient"></i>
-          <span>Alexander<span class="text-gradient">.dev</span></span>
+      <div class="footer-brand">
+        <a href="#hero" class="nav-brand">
+          <i class="fas fa-code text-gradient"></i>
+          <span>JuanDavid<span class="text-gradient">.dev</span></span>
         </a>
-        <p style="font-size: 0.875rem; margin-top: 0.5rem;" data-i18n="footer_rights">
-          Todos los derechos reservados. Desarrollado con HTML5, CSS3 & JS Vanilla para GitHub Pages.
+        <p class="footer-copyright">
+          &copy; 2026 Juan David Gómez Vargas. <span data-i18n="footer_rights">Todos los derechos reservados.</span>
         </p>
       </div>
 
-      <div class="social-links">
-        <a href="https://github.com" target="_blank" class="icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com" target="_blank" class="icon-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://twitter.com" target="_blank" class="icon-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="mailto:alexander.dev@example.com" class="icon-btn" aria-label="Email"><i class="far fa-envelope"></i></a>
+      <div class="footer-center">
+        <span data-i18n="footer_built">Hecho con</span> <span>&hearts;</span> <span data-i18n="footer_tech">HTML5, CSS3 & JavaScript Vanilla</span>
+      </div>
+
+      <div class="footer-social">
+        <a href="https://github.com/JuanDavid-dev-lang" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="icon-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
       </div>
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
   <button class="back-to-top" aria-label="Volver arriba">
     <i class="fas fa-arrow-up"></i>
   </button>
 
   <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="assets/js/config.js"></script>
   <script src="assets/js/theme.js"></script>
   <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/navigation.js"></script>
   <script src="assets/js/particles.js"></script>
   <script src="assets/js/github-api.js"></script>
-  <script src="assets/js/content-loader.js"></script>
-  <script src="assets/js/search-filter.js"></script>
-  <script src="assets/js/ui-effects.js"></script>
+  <script src="assets/js/sections.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/animations.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Desarrollo Web Full Stack",
+    "description": "Diseño y desarrollo de sitios web modernos, landing pages, blogs, portafolios y aplicaciones web completas con las últimas tecnologías del mercado.",
+    "icon": "fas fa-code",
+    "color": "#38bdf8",
+    "technologies": ["HTML", "CSS", "JavaScript", "React", "Next.js", "TailwindCSS", "Bootstrap", "WordPress", "PHP", "Node.js", "Python", "Java", "Express", "FastAPI"]
+  },
+  {
+    "title": "Diseño UI/UX",
+    "description": "Interfaces de usuario intuitivas, modernas y accesibles. Diseño centrado en el usuario con prototipos interactivos y sistemas de diseño escalables.",
+    "icon": "fas fa-palette",
+    "color": "#a78bfa",
+    "technologies": ["Figma", "CSS3", "Responsive Design", "Glassmorphism", "Animaciones", "Accesibilidad WCAG"]
+  },
+  {
+    "title": "Inteligencia Artificial & ML",
+    "description": "Integración de modelos de Machine Learning, análisis predictivo, procesamiento de datos y soluciones de IA aplicadas a problemas reales de negocio.",
+    "icon": "fas fa-brain",
+    "color": "#818cf8",
+    "technologies": ["Python", "TensorFlow", "Scikit-Learn", "XGBoost", "Pandas", "NumPy", "Apache Spark"]
+  },
+  {
+    "title": "APIs & Backend",
+    "description": "Desarrollo de APIs REST robustas, microservicios escalables, autenticación, integración con servicios externos y arquitecturas distribuidas.",
+    "icon": "fas fa-server",
+    "color": "#34d399",
+    "technologies": ["Node.js", "Express", "FastAPI", "PHP", "Java", "REST API", "WebSocket", "JWT"]
+  },
+  {
+    "title": "Bases de Datos",
+    "description": "Diseño, modelado y optimización de bases de datos relacionales y NoSQL. Migraciones, indexación avanzada y consultas de alto rendimiento.",
+    "icon": "fas fa-database",
+    "color": "#fbbf24",
+    "technologies": ["MySQL", "PostgreSQL", "MongoDB", "Supabase", "SQLite", "Redis"]
+  },
+  {
+    "title": "Sistemas Empresariales",
+    "description": "Desarrollo de plataformas institucionales, sistemas de gestión, dashboards corporativos y herramientas de automatización empresarial.",
+    "icon": "fas fa-building",
+    "color": "#fb7185",
+    "technologies": ["React", "PHP", "MySQL", "Docker", "REST API", "Python", "Apache Spark"]
+  }
+]

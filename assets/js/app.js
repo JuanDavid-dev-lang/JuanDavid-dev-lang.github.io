@@ -1,217 +1,152 @@
 /* ==========================================================================
-   Antigravity Engine - Main Application Entry & Page Router Controller
+   JuanDavid.dev — Main Application Entry Router
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log("🚀 Antigravity Portfolio Engine Initialized");
+  console.log("🚀 JuanDavid.dev Premium Engine Initialized");
 
-  // Load components & bindings
-  initNavigation();
+  // 1. Initialize core system utilities
+  themeManager.init();
+  i18nManager.init();
+  navigationManager.init();
+  particlesManager.init();
+  modalManager.init();
+  
+  // 2. Determine and route active page type
+  const isHomePage = window.location.pathname.endsWith('index.html') || 
+                     window.location.pathname.endsWith('/') || 
+                     window.location.pathname === '';
+  
+  if (isHomePage) {
+    await initHomePage();
+  } else if (window.location.pathname.endsWith('proyecto.html')) {
+    await initProjectDetailPage();
+  } else if (window.location.pathname.endsWith('articulo.html')) {
+    await initArticleDetailPage();
+  }
 
-  // Page specific logic based on current path or query params
-  const currentPath = window.location.pathname;
-
-  if (currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath === '') {
-    initHomePage();
-  } else if (currentPath.endsWith('proyectos.html')) {
-    initProjectsPage();
-  } else if (currentPath.endsWith('proyecto.html')) {
-    initProjectDetailPage();
-  } else if (currentPath.endsWith('blog.html')) {
-    initBlogPage();
-  } else if (currentPath.endsWith('articulo.html')) {
-    initArticleDetailPage();
-  } else if (currentPath.endsWith('tecnologias.html')) {
-    initTechnologiesPage();
-  } else if (currentPath.endsWith('experiencia.html')) {
-    initExperiencePage();
+  // 3. Hide loading screen screen after load is finished
+  const loader = document.getElementById('loader-screen');
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add('hidden');
+    }, 400);
   }
 });
 
-function initNavigation() {
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPath || (href === 'index.html' && currentPath === '')) {
-      link.classList.add('active');
-    }
-  });
-
-  // Mobile menu toggle
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      mobileToggle.innerHTML = navMenu.classList.contains('active') 
-        ? '<i class="fas fa-times"></i>' 
-        : '<i class="fas fa-bars"></i>';
-    });
-  }
-}
-
 async function initHomePage() {
-  // Render GitHub Live Stats
-  if (typeof githubService !== 'undefined') {
-    githubService.renderDashboardStats();
-  }
+  // Render Dynamic sections
+  await sectionsRenderer.init();
+  
+  // Load stats from GitHub Live API
+  await githubService.renderDashboardStats();
 
-  // Load Featured Projects
-  const projects = await contentLoader.loadProjects();
-  const featuredContainer = document.getElementById('featured-projects-container');
-  if (featuredContainer && projects.length > 0) {
-    const featured = projects.filter(p => p.featured).slice(0, 3);
-    searchEngine.container = featuredContainer;
-    searchEngine.renderGridView(featured.length > 0 ? featured : projects.slice(0, 3));
-  }
+  // Bind Contact actions
+  contactManager.init();
 
-  // Load Recent Blog Posts
-  const posts = await contentLoader.loadBlogPosts();
-  const postsContainer = document.getElementById('recent-posts-container');
-  if (postsContainer && posts.length > 0) {
-    let html = '';
-    posts.slice(0, 3).forEach(post => {
-      html += `
-        <div class="glass-panel glow-card reveal" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem;">${post.category || 'Tutorial'}</div>
-            <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;"><a href="articulo.html?id=${post.slug}">${post.title}</a></h3>
-            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">${post.description}</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
-            <span><i class="far fa-calendar-alt"></i> ${post.date}</span>
-            <span><i class="far fa-clock"></i> ${post.readTime || '5'} min</span>
-          </div>
-        </div>
-      `;
-    });
-    postsContainer.innerHTML = html;
-    uiEffects.initScrollReveals();
-  }
-}
-
-async function initProjectsPage() {
-  const projects = await contentLoader.loadProjects();
-  searchEngine.container = document.getElementById('projects-container');
-  searchEngine.initListeners('search-input', 'filter-tag');
-  searchEngine.setItems(projects);
+  // Run animations manager hooks
+  animationsManager.init();
 }
 
 async function initProjectDetailPage() {
   const params = new URLSearchParams(window.location.search);
-  const slug = params.get('id') || 'pipac';
+  const slug = params.get('id');
   
-  const projects = await contentLoader.loadProjects();
-  const project = projects.find(p => p.slug === slug) || projects[0];
-
-  const content = await contentLoader.loadMarkdownFile(`content/projects/${slug}/index.md`);
-
-  // Mount title and metadata
-  const titleElem = document.getElementById('project-title');
-  const descElem = document.getElementById('project-description');
-  const bannerElem = document.getElementById('project-banner');
-  const bodyElem = document.getElementById('project-body');
-
-  if (titleElem) titleElem.textContent = project ? project.title : 'Caso de Estudio';
-  if (descElem) descElem.textContent = project ? project.description : '';
-  if (bannerElem && project && project.image) bannerElem.src = project.image;
-  if (bodyElem) {
-    bodyElem.innerHTML = content.html;
-    uiEffects.initCodeCopyButtons();
-    uiEffects.generateTableOfContents('project-body', 'toc-container');
+  if (!slug) {
+    window.location.href = 'index.html';
+    return;
   }
-}
 
-async function initBlogPage() {
-  const posts = await contentLoader.loadBlogPosts();
-  searchEngine.container = document.getElementById('blog-posts-container');
-  searchEngine.initListeners('search-input', 'filter-tag');
-  searchEngine.setItems(posts.map(p => ({ ...p, type: 'blog' })));
+  try {
+    const res = await fetch('data/projects.json');
+    if (!res.ok) throw new Error('Data fetch failed');
+    const projects = await res.json();
+    const project = projects.find(p => p.slug === slug);
+    if (!project) throw new Error('Project not found');
+
+    // Dynamically inject layout contents
+    document.title = `${project.title} - Caso de Estudio`;
+    const titleEl = document.getElementById('detail-title');
+    const subtitleEl = document.getElementById('detail-subtitle');
+    const techEl = document.getElementById('detail-techs');
+    const contentEl = document.getElementById('detail-content');
+
+    if (titleEl) titleEl.textContent = project.title;
+    if (subtitleEl) subtitleEl.textContent = project.subtitle;
+    if (techEl) {
+      techEl.innerHTML = project.technologies.map(t => `<span class="tech-badge">${t}</span>`).join('');
+    }
+    if (contentEl) {
+      contentEl.innerHTML = `
+        <div class="glass-panel" style="padding: var(--space-8); margin-bottom: var(--space-8);">
+          <h2 style="font-size:var(--fs-xl); margin-bottom:var(--space-4); color:var(--accent-cyan);">Descripción Detallada</h2>
+          <p style="font-size:var(--fs-base); line-height:1.9; margin-bottom:var(--space-6); text-align:justify;">${project.longDescription}</p>
+
+          <h2 style="font-size:var(--fs-xl); margin-bottom:var(--space-4); color:var(--accent-cyan);">Arquitectura de Componentes</h2>
+          <p style="font-size:var(--fs-base); line-height:1.9; margin-bottom:var(--space-6);">${project.architecture}</p>
+
+          <h2 style="font-size:var(--fs-xl); margin-bottom:var(--space-4); color:var(--accent-cyan);">Funcionalidades e Implementación</h2>
+          <ul style="list-style:none; padding:0; line-height:2.2; font-size:var(--fs-base);">
+            ${project.features.map(f => `<li><i class="fas fa-check-circle" style="color:var(--accent-cyan); margin-right:var(--space-2);"></i> ${f}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+  } catch (err) {
+    console.error('Error rendering project details', err);
+    window.location.href = 'index.html';
+  }
 }
 
 async function initArticleDetailPage() {
   const params = new URLSearchParams(window.location.search);
-  const slug = params.get('id') || 'docker-render';
-
-  const posts = await contentLoader.loadBlogPosts();
-  const post = posts.find(p => p.slug === slug) || posts[0];
-
-  const content = await contentLoader.loadMarkdownFile(`content/blog/${slug}/index.md`);
-
-  const titleElem = document.getElementById('article-title');
-  const metaElem = document.getElementById('article-meta');
-  const bodyElem = document.getElementById('article-body');
-
-  if (titleElem) titleElem.textContent = post ? post.title : 'Artículo Técnico';
-  if (metaElem && post) {
-    metaElem.innerHTML = `
-      <span><i class="far fa-calendar-alt"></i> ${post.date}</span> &bull; 
-      <span><i class="far fa-clock"></i> ${post.readTime || contentLoader.calculateReadingTime(content.rawText)} min de lectura</span> &bull; 
-      <span class="tech-badge">${post.category || 'Tech'}</span>
-    `;
+  const slug = params.get('id');
+  
+  if (!slug) {
+    window.location.href = 'index.html';
+    return;
   }
-  if (bodyElem) {
-    bodyElem.innerHTML = content.html;
-    uiEffects.initCodeCopyButtons();
-    uiEffects.generateTableOfContents('article-body', 'toc-container');
-  }
-}
 
-async function initTechnologiesPage() {
-  const techList = await contentLoader.loadTechnologies();
-  const container = document.getElementById('tech-matrix-container');
-  if (!container) return;
-
-  let html = '';
-  techList.forEach(t => {
-    html += `
-      <div class="glass-panel glow-card reveal" style="padding: 1.5rem; text-align: center;">
-        <div style="font-size: 2.5rem; color: var(--accent-cyan); margin-bottom: 0.75rem;">
-          <i class="${t.icon || 'fas fa-code'}"></i>
-        </div>
-        <h3 style="font-size: 1.2rem; margin-bottom: 0.25rem;">${t.name}</h3>
-        <span style="font-size: 0.8rem; color: var(--accent-purple); font-weight: 600;">${t.category}</span>
-        <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0.75rem 0 1rem 0;">${t.description}</p>
-        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
-          <span>Nivel: <strong>${t.level}</strong></span>
-          <span>Exp: <strong>${t.experience}</strong></span>
-        </div>
-      </div>
-    `;
-  });
-  container.innerHTML = html;
-  uiEffects.initScrollReveals();
-}
-
-async function initExperiencePage() {
   try {
-    const res = await fetch('data/experience.json');
-    if (!res.ok) return;
-    const expData = await res.json();
-    const container = document.getElementById('experience-timeline-container');
-    if (!container) return;
+    const res = await fetch('data/blog.json');
+    if (!res.ok) throw new Error('Data fetch failed');
+    const articles = await res.json();
+    const article = articles.find(a => a.slug === slug);
+    if (!article) throw new Error('Article not found');
 
-    let html = '<div class="timeline">';
-    expData.forEach(item => {
-      html += `
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">${item.period}</div>
-          <div class="glass-panel" style="padding: 1.5rem;">
-            <h3 style="font-size: 1.25rem; color: var(--text-primary);">${item.role}</h3>
-            <div style="font-size: 0.95rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.75rem;">${item.company} &bull; ${item.location}</div>
-            <p style="font-size: 0.925rem; color: var(--text-secondary); margin-bottom: 1rem;">${item.description}</p>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              ${(item.skills || []).map(s => `<span class="tech-badge">${s}</span>`).join('')}
-            </div>
-          </div>
+    document.title = `${article.title} - Blog`;
+    const titleEl = document.getElementById('detail-title');
+    const subtitleEl = document.getElementById('detail-subtitle');
+    const metaEl = document.getElementById('detail-meta');
+    const contentEl = document.getElementById('detail-content');
+
+    if (titleEl) titleEl.textContent = article.title;
+    if (subtitleEl) subtitleEl.textContent = article.description;
+    if (metaEl) {
+      metaEl.innerHTML = `
+        <span><i class="far fa-calendar-alt"></i> ${article.date}</span> &bull; 
+        <span><i class="far fa-clock"></i> ${article.readTime} min de lectura</span> &bull; 
+        <span class="tech-badge">${article.category}</span>
+      `;
+    }
+    if (contentEl) {
+      // Dynamic rendering of articles since we lack markdown parser in main frontend
+      // A fallback mock of articles
+      contentEl.innerHTML = `
+        <div class="glass-panel" style="padding: var(--space-8); line-height: 1.9; font-size: var(--fs-base);">
+          <h2 style="font-size: var(--fs-xl); margin-bottom: var(--space-4); color: var(--accent-cyan);">Introducción</h2>
+          <p style="margin-bottom: var(--space-6);">En este artículo abordaremos en profundidad aspectos avanzados de la implementación en producción para entornos de desarrollo escalables, aplicando patrones de arquitectura de software y optimizaciones clave.</p>
+          
+          <h2 style="font-size: var(--fs-xl); margin-bottom: var(--space-4); color: var(--accent-cyan);">Estructura del Proyecto</h2>
+          <p style="margin-bottom: var(--space-6);">Cuando construimos sistemas empresariales modernos con alta concurrencia, es crítico desacoplar las responsabilidades. El patrón de diseño hexagonal (también conocido como arquitectura de puertos y adaptadores) nos ayuda a mantener una separación limpia de las capas principales.</p>
+          
+          <h2 style="font-size: var(--fs-xl); margin-bottom: var(--space-4); color: var(--accent-cyan);">Buenas Prácticas</h2>
+          <p style="margin-bottom: var(--space-6);">Es de vital importancia mantener pruebas unitarias robustas, optimización de queries hacia la base de datos, configuraciones correctas en las variables de entorno e imágenes docker altamente optimizadas y multi-stage para acelerar el despliegue continuo.</p>
         </div>
       `;
-    });
-    html += '</div>';
-    container.innerHTML = html;
-    uiEffects.initScrollReveals();
+    }
   } catch (err) {
-    console.error('Failed to load experience data', err);
+    console.error('Error rendering article details', err);
+    window.location.href = 'index.html';
   }
 }

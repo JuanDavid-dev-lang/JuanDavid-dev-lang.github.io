@@ -1,125 +1,236 @@
 /* ==========================================================================
-   Antigravity Engine - Animations & Interactive Visual Effects
+   JuanDavid.dev — Animations & Keyframes
    ========================================================================== */
 
-/* --- Background Canvas for Interactive Particles --- */
-#bg-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.7;
+/* === SCROLL REVEAL ANIMATIONS === */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 
-/* --- Aurora Background Effect --- */
-.aurora-bg {
-  position: fixed;
-  top: -20vh;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120vw;
-  height: 60vh;
-  background: var(--gradient-glow);
-  filter: blur(80px);
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 0;
-  animation: aurora-float 15s ease-in-out infinite alternate;
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@keyframes aurora-float {
-  0% { transform: translateX(-50%) translateY(0) scale(1); }
-  50% { transform: translateX(-48%) translateY(30px) scale(1.08); }
-  100% { transform: translateX(-52%) translateY(-20px) scale(0.95); }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 
-/* --- Keyframe Animations --- */
-@keyframes pulse-glow {
-  0% { opacity: 0.4; transform: scale(0.98); }
-  100% { opacity: 0.8; transform: scale(1.05); }
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered delays */
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+.reveal-delay-5 { transition-delay: 500ms; }
+.reveal-delay-6 { transition-delay: 600ms; }
+.reveal-delay-7 { transition-delay: 700ms; }
+.reveal-delay-8 { transition-delay: 800ms; }
+
+/* === FLOAT ANIMATION === */
 @keyframes float {
-  0% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
 }
 
 .float-animation {
   animation: float 6s ease-in-out infinite;
 }
 
-/* --- Scroll Reveal Animations (Intersection Observer) --- */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+.float-animation-delay {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 1.5s;
 }
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+/* === GRADIENT SHIFT === */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.reveal-delay-1 { transition-delay: 0.15s; }
-.reveal-delay-2 { transition-delay: 0.3s; }
-.reveal-delay-3 { transition-delay: 0.45s; }
-
-/* --- Custom Cursor --- */
-.custom-cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--accent-cyan);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
-  z-index: 9999;
-  display: none;
+.gradient-animated {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease-in-out infinite;
 }
 
-@media (pointer: fine) {
-  .custom-cursor {
-    display: block;
-  }
+/* === SHIMMER === */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
-.custom-cursor.hovering {
-  width: 45px;
-  height: 45px;
-  background: rgba(56, 189, 248, 0.15);
-  border-color: var(--accent-purple);
-}
-
-/* --- Card Glow Tracking Effect --- */
-.glow-card {
+.shimmer {
   position: relative;
+  overflow: hidden;
 }
 
-.glow-card::before {
+.shimmer::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.5), transparent 80%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+  animation: shimmer 2s infinite;
 }
 
-.glow-card:hover::before {
-  opacity: 1;
+/* === SLIDE IN ANIMATIONS === */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === HERO ANIMATIONS === */
+.hero-animate-1 {
+  animation: slide-up 0.8s var(--ease-out) 0.2s both;
+}
+
+.hero-animate-2 {
+  animation: slide-up 0.8s var(--ease-out) 0.4s both;
+}
+
+.hero-animate-3 {
+  animation: slide-up 0.8s var(--ease-out) 0.6s both;
+}
+
+.hero-animate-4 {
+  animation: slide-up 0.8s var(--ease-out) 0.8s both;
+}
+
+.hero-animate-5 {
+  animation: slide-up 0.8s var(--ease-out) 1s both;
+}
+
+.hero-animate-6 {
+  animation: fade-in 1s var(--ease-out) 1.2s both;
+}
+
+/* === ORBIT DECORATION === */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+.orbit-decoration {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  animation: orbit 15s linear infinite;
+  opacity: 0.3;
+}
+
+/* === HOVER EFFECTS === */
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-scale {
+  transition: transform var(--transition-normal);
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-normal);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+/* === PARALLAX UTILITY === */
+.parallax-slow {
+  will-change: transform;
+}
+
+/* === LOADING SKELETON === */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.skeleton {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* === REDUCE MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal, .reveal-left, .reveal-right, .reveal-scale {
+    opacity: 1;
+    transform: none;
+  }
 }

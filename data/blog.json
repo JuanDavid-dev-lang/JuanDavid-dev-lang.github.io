@@ -6,9 +6,10 @@
     "category": "Cloud & DevOps",
     "tags": ["Docker", "Render", "DevOps", "Cloud", "Linux"],
     "date": "2026-06-15",
-    "author": "Alexander Dev",
+    "author": "Juan David Gómez Vargas",
     "readTime": "8",
-    "difficulty": "Intermedio"
+    "difficulty": "Intermedio",
+    "icon": "fab fa-docker"
   },
   {
     "slug": "fastapi",
@@ -17,8 +18,21 @@
     "category": "Backend",
     "tags": ["Python", "FastAPI", "Backend", "SQLAlchemy", "Clean Code"],
     "date": "2026-04-20",
-    "author": "Alexander Dev",
+    "author": "Juan David Gómez Vargas",
     "readTime": "12",
-    "difficulty": "Avanzado"
+    "difficulty": "Avanzado",
+    "icon": "fab fa-python"
+  },
+  {
+    "slug": "ml-intro",
+    "title": "Introducción a Machine Learning con Scikit-Learn: De Cero a Tu Primer Modelo",
+    "description": "Guía práctica para construir tu primer modelo de Machine Learning paso a paso usando Python, Scikit-Learn y datos reales.",
+    "category": "IA & Machine Learning",
+    "tags": ["Python", "Machine Learning", "Scikit-Learn", "Data Science"],
+    "date": "2026-03-10",
+    "author": "Juan David Gómez Vargas",
+    "readTime": "15",
+    "difficulty": "Principiante",
+    "icon": "fas fa-brain"
   }
 ]

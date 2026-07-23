@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Renderizador 3D Web",
+    "description": "Plataforma web interactiva para la carga, visualización y renderizado continuo de modelos 3D directamente desde el navegador con WebGL.",
+    "icon": "fas fa-cube",
+    "color": "#f472b6",
+    "technologies": ["JavaScript", "Three.js", "WebGL", "HTML5", "CSS3"],
+    "category": "Graphics & Web",
+    "status": "Completado"
+  },
+  {
+    "title": "App Móvil Institucional",
+    "description": "Aplicación móvil híbrida desarrollada en Python con Kivy para la gestión de servicios y procesos institucionales académicos.",
+    "icon": "fas fa-mobile-alt",
+    "color": "#a78bfa",
+    "technologies": ["Python", "Kivy", "REST API", "SQLite", "Android"],
+    "category": "Mobile",
+    "status": "Completado"
+  },
+  {
+    "title": "Laboratorio de IA",
+    "description": "Colección de experimentos con modelos de Machine Learning, redes neuronales, procesamiento de lenguaje natural y visión por computadora.",
+    "icon": "fas fa-flask",
+    "color": "#38bdf8",
+    "technologies": ["Python", "TensorFlow", "Scikit-Learn", "Jupyter", "NumPy"],
+    "category": "AI & ML",
+    "status": "En progreso"
+  },
+  {
+    "title": "Automatizaciones DevOps",
+    "description": "Scripts y pipelines de automatización para despliegue continuo, monitoreo de servicios y gestión de infraestructura con Docker.",
+    "icon": "fas fa-robot",
+    "color": "#34d399",
+    "technologies": ["Docker", "Bash", "GitHub Actions", "Linux", "Python"],
+    "category": "DevOps",
+    "status": "En progreso"
+  },
+  {
+    "title": "WordPress Custom Themes",
+    "description": "Desarrollo de temas y estilos personalizados para sitios WordPress con enfoque en rendimiento, SEO y diseño moderno responsivo.",
+    "icon": "fab fa-wordpress",
+    "color": "#fbbf24",
+    "technologies": ["WordPress", "PHP", "CSS3", "JavaScript", "SEO"],
+    "category": "Web Development",
+    "status": "Completado"
+  },
+  {
+    "title": "API REST Microservicios",
+    "description": "Arquitectura de microservicios con APIs REST documentadas, autenticación JWT, rate limiting y despliegue en contenedores Docker.",
+    "icon": "fas fa-server",
+    "color": "#fb7185",
+    "technologies": ["Node.js", "Express", "FastAPI", "Docker", "PostgreSQL"],
+    "category": "Backend",
+    "status": "Completado"
+  },
+  {
+    "title": "Dashboard Analytics",
+    "description": "Panel de análisis de datos con visualizaciones interactivas, gráficos en tiempo real y reportes exportables para proyectos académicos.",
+    "icon": "fas fa-chart-bar",
+    "color": "#818cf8",
+    "technologies": ["React", "Chart.js", "Python", "Pandas", "REST API"],
+    "category": "Data & Web",
+    "status": "Completado"
+  },
+  {
+    "title": "Herramientas CLI",
+    "description": "Herramientas de línea de comandos para automatización de tareas repetitivas, generación de código y gestión de proyectos.",
+    "icon": "fas fa-terminal",
+    "color": "#06b6d4",
+    "technologies": ["Python", "Node.js", "Bash", "Git", "npm"],
+    "category": "Open Source",
+    "status": "En progreso"
+  }
+]

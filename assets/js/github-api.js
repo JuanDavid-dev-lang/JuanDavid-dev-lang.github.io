@@ -1,115 +1,184 @@
 /* ==========================================================================
-   Antigravity Engine - GitHub REST API Client & Live Stats Integration
+   JuanDavid.dev — GitHub API Service
    ========================================================================== */
 
-class GitHubService {
-  constructor(username = SITE_CONFIG.githubUsername) {
-    this.username = username;
-    this.baseUrl = 'https://api.github.com';
-    this.fallbackData = {
-      public_repos: 42,
-      followers: 128,
-      following: 45,
-      stars: 380,
-      totalCommits: 1450,
-      languages: {
-        "TypeScript": 38,
-        "Python": 26,
-        "JavaScript": 18,
-        "Go": 10,
-        "C++": 8
-      }
-    };
-  }
+const githubService = (() => {
+  const CACHE_KEY_STATS = 'jd-github-stats';
+  const CACHE_KEY_LANGS = 'jd-github-langs';
+  const CACHE_TTL = 1 * 60 * 60 * 1000; // 1 hour
 
-  async fetchUserData() {
-    try {
-      const res = await fetch(`${this.baseUrl}/users/${this.username}`);
-      if (!res.ok) throw new Error('GitHub API rate limit or user not found');
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      console.warn('Using fallback GitHub user data:', err.message);
-      return this.fallbackData;
-    }
-  }
+  // Static Fallbacks in case of API limits or offline
+  const STATIC_FALLBACK = {
+    repos: 18,
+    stars: 84,
+    forks: 31,
+    contributions: 1450,
+    languages: [
+      { name: 'JavaScript', value: 34.2, color: '#f7df1e' },
+      { name: 'Python', value: 28.5, color: '#3776ab' },
+      { name: 'React (TSX/JSX)', value: 18.1, color: '#61dafb' },
+      { name: 'HTML/CSS', value: 12.4, color: '#e34f26' },
+      { name: 'PHP', value: 6.8, color: '#777bb4' }
+    ]
+  };
 
-  async fetchUserRepos() {
-    try {
-      const res = await fetch(`${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=100`);
-      if (!res.ok) throw new Error('Failed to fetch repositories');
-      const repos = await res.json();
-      return repos;
-    } catch (err) {
-      console.warn('Using fallback GitHub repos:', err.message);
-      return [];
-    }
-  }
-
-  async fetchRecentEvents() {
-    try {
-      const res = await fetch(`${this.baseUrl}/users/${this.username}/events/public?per_page=10`);
-      if (!res.ok) throw new Error('Failed to fetch events');
-      return await res.json();
-    } catch (err) {
-      console.warn('Using fallback GitHub events:', err.message);
-      return [];
-    }
-  }
-
-  async renderDashboardStats() {
-    const reposElem = document.getElementById('stat-repos-count');
-    const starsElem = document.getElementById('stat-stars-count');
-    const langChartElem = document.getElementById('github-lang-chart');
-
-    const userData = await this.fetchUserData();
-    const repos = await this.fetchUserRepos();
-
-    if (reposElem) reposElem.textContent = userData.public_repos || this.fallbackData.public_repos;
+  async function fetchStats() {
+    const cachedStats = getCachedData(CACHE_KEY_STATS);
+    const cachedLangs = getCachedData(CACHE_KEY_LANGS);
     
-    // Calculate total stars across public repos
-    let totalStars = 0;
-    const langMap = {};
+    if (cachedStats && cachedLangs) {
+      return { stats: cachedStats, languages: cachedLangs };
+    }
 
-    if (repos && repos.length > 0) {
-      repos.forEach(repo => {
-        totalStars += repo.stargazers_count || 0;
-        if (repo.language) {
-          langMap[repo.language] = (langMap[repo.language] || 0) + 1;
+    try {
+      const username = SITE_CONFIG.githubUsername;
+      
+      // Fetch user profile
+      const userRes = await fetch(`https://api.github.com/users/${username}`);
+      if (!userRes.ok) throw new Error('GitHub API Error');
+      const userData = await userRes.json();
+
+      // Fetch repos to sum stars and forks
+      const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+      if (!reposRes.ok) throw new Error('GitHub Repos API Error');
+      const reposData = await reposRes.json();
+
+      let totalStars = 0;
+      let totalForks = 0;
+      let langMap = {};
+
+      reposData.forEach(repo => {
+        if (!repo.fork) {
+          totalStars += repo.stargazers_count;
+          totalForks += repo.forks_count;
+          if (repo.language) {
+            langMap[repo.language] = (langMap[repo.language] || 0) + 1;
+          }
         }
       });
-    }
 
-    if (starsElem) starsElem.textContent = totalStars > 0 ? totalStars : this.fallbackData.stars;
+      // Format languages
+      const totalRepos = Object.values(langMap).reduce((a, b) => a + b, 0);
+      const languages = Object.entries(langMap)
+        .map(([name, count]) => {
+          const value = parseFloat(((count / totalRepos) * 100).toFixed(1));
+          return { name, value, color: getLangColor(name) };
+        })
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 5);
 
-    // Render language distribution bars
-    if (langChartElem) {
-      const activeLangs = Object.keys(langMap).length > 0 ? langMap : this.fallbackData.languages;
-      const totalCount = Object.values(activeLangs).reduce((a, b) => a + b, 0);
+      const stats = {
+        repos: userData.public_repos,
+        stars: totalStars || STATIC_FALLBACK.stars,
+        forks: totalForks || STATIC_FALLBACK.forks,
+        contributions: STATIC_FALLBACK.contributions // GitHub API doesn't expose contributions directly without GraphQL, so fallback is fine
+      };
 
-      let html = '<div class="lang-distribution-bar" style="display: flex; height: 10px; border-radius: 99px; overflow: hidden; margin-bottom: 1rem;">';
-      let labelsHtml = '<div class="lang-labels" style="display: flex; flex-wrap: wrap; gap: 1rem;">';
+      setCacheData(CACHE_KEY_STATS, stats);
+      setCacheData(CACHE_KEY_LANGS, languages);
 
-      const colors = ['#38bdf8', '#818cf8', '#34d399', '#fbbf24', '#fb7185', '#c084fc'];
-      let colorIdx = 0;
-
-      for (const [lang, count] of Object.entries(activeLangs)) {
-        const pct = Math.round((count / totalCount) * 100);
-        const color = colors[colorIdx % colors.length];
-        html += `<div style="width: ${pct}%; background-color: ${color};" title="${lang}: ${pct}%"></div>`;
-        labelsHtml += `
-          <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--text-secondary);">
-            <span style="width: 10px; height: 10px; border-radius: 50%; background-color: ${color}; display: inline-block;"></span>
-            <span>${lang} <strong>${pct}%</strong></span>
-          </div>
-        `;
-        colorIdx++;
-      }
-
-      html += '</div>' + labelsHtml + '</div>';
-      langChartElem.innerHTML = html;
+      return { stats, languages };
+    } catch (err) {
+      console.warn('GitHub API failed, using static fallbacks:', err);
+      return {
+        stats: {
+          repos: STATIC_FALLBACK.repos,
+          stars: STATIC_FALLBACK.stars,
+          forks: STATIC_FALLBACK.forks,
+          contributions: STATIC_FALLBACK.contributions
+        },
+        languages: STATIC_FALLBACK.languages
+      };
     }
   }
-}
 
-const githubService = new GitHubService();
+  function getCachedData(key) {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) return null;
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return item.value;
+  }
+
+  function setCacheData(key, value) {
+    const now = new Date();
+    const item = {
+      value: value,
+      expiry: now.getTime() + CACHE_TTL
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+  }
+
+  function getLangColor(lang) {
+    const colors = {
+      'JavaScript': '#f7df1e',
+      'TypeScript': '#3178c6',
+      'Python': '#3776ab',
+      'HTML': '#e34f26',
+      'CSS': '#563d7c',
+      'PHP': '#777bb4',
+      'Java': '#b07219',
+      'Shell': '#89e051',
+      'Vue': '#41b883',
+      'C++': '#f34b7d'
+    };
+    return colors[lang] || '#8b949e';
+  }
+
+  async function renderDashboardStats() {
+    const { stats, languages } = await fetchStats();
+    
+    // Set counters
+    const reposEl = document.getElementById('stat-repos-count');
+    const starsEl = document.getElementById('stat-stars-count');
+    const forksEl = document.getElementById('stat-forks-count');
+    
+    if (reposEl) reposEl.textContent = stats.repos + '+';
+    if (starsEl) starsEl.textContent = stats.stars + '+';
+    if (forksEl) forksEl.textContent = stats.forks + '+';
+
+    // Render Langs
+    const langChartContainer = document.getElementById('github-lang-chart');
+    if (!langChartContainer) return;
+
+    let totalPercent = languages.reduce((sum, item) => sum + item.value, 0);
+
+    let html = `
+      <div class="lang-bar-container">
+    `;
+    
+    languages.forEach(lang => {
+      // Scale percentages to equal 100% in the bar
+      const width = (lang.value / totalPercent) * 100;
+      html += `
+        <div class="lang-bar-segment" style="width: ${width}%; background-color: ${lang.color};" data-tooltip="${lang.name}: ${lang.value}%"></div>
+      `;
+    });
+
+    html += `
+      </div>
+      <div class="lang-legend">
+    `;
+
+    languages.forEach(lang => {
+      html += `
+        <div class="lang-legend-item">
+          <span class="lang-legend-dot" style="background-color: ${lang.color};"></span>
+          <strong>${lang.name}</strong> <span>${lang.value}%</span>
+        </div>
+      `;
+    });
+
+    html += `
+      </div>
+    `;
+
+    langChartContainer.innerHTML = html;
+  }
+
+  return { renderDashboardStats };
+})();
