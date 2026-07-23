@@ -1,0 +1,26 @@
+[
+  {
+    "period": "2024 - Presente",
+    "role": "Senior Software Engineer & Tech Lead",
+    "company": "Tech Solutions Corp",
+    "location": "Remote",
+    "description": "Liderazgo del desarrollo de arquitecturas distribuidas de microservicios, optimización de pipelines CI/CD y tutoría a ingenieros junior.",
+    "skills": ["Python", "FastAPI", "Docker", "AWS", "TypeScript", "PostgreSQL"]
+  },
+  {
+    "period": "2022 - 2024",
+    "role": "Full Stack Developer",
+    "company": "Digital Innovation Lab",
+    "location": "Híbrido",
+    "description": "Diseño e implementación de plataformas web responsivas de alto tráfico, integración de APIs RESTful y bases de datos NoSQL.",
+    "skills": ["JavaScript", "React", "Node.js", "MongoDB", "TailwindCSS"]
+  },
+  {
+    "period": "2019 - 2023",
+    "role": "Ingeniería de Sistemas / Software",
+    "company": "Universidad Industrial",
+    "location": "Campus Principal",
+    "description": "Graduado con honores. Especialización en algoritmos, estructuras de datos, inteligencia artificial y sistemas embebidos.",
+    "skills": ["C++", "Java", "Estructuras de Datos", "Redes", "Sistemas Operativos"]
+  }
+]

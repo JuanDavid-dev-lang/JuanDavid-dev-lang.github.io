@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Python",
+    "category": "Lenguajes & Backend",
+    "icon": "fab fa-python",
+    "level": "Experto",
+    "experience": "5+ años",
+    "description": "Desarrollo de API REST con FastAPI/Flask, modelos de ML en TensorFlow y scripts de automatización."
+  },
+  {
+    "name": "TypeScript / JavaScript",
+    "category": "Frontend & Node.js",
+    "icon": "fab fa-js-square",
+    "level": "Experto",
+    "experience": "5+ años",
+    "description": "Frontend moderno con Vanilla JS, React/Next.js y backend asíncrono con Node.js."
+  },
+  {
+    "name": "Docker & Kubernetes",
+    "category": "DevOps & Cloud",
+    "icon": "fab fa-docker",
+    "level": "Avanzado",
+    "experience": "4 años",
+    "description": "Containerización de aplicaciones, orquestación, CI/CD pipelines y entornos aislados."
+  },
+  {
+    "name": "C++ / Embedded (ESP32)",
+    "category": "Sistemas & IoT",
+    "icon": "fas fa-microchip",
+    "level": "Intermedio",
+    "experience": "3 años",
+    "description": "Programación de microcontroladores ESP32/Arduino, protocolos MQTT/HTTP y sensores."
+  },
+  {
+    "name": "PostgreSQL & Redis",
+    "category": "Bases de Datos",
+    "icon": "fas fa-database",
+    "level": "Avanzado",
+    "experience": "4 años",
+    "description": "Modelado relacional, optimización de queries, índices complejos y caché en memoria de alta velocidad."
+  },
+  {
+    "name": "Git & GitHub",
+    "category": "Herramientas",
+    "icon": "fab fa-github",
+    "level": "Experto",
+    "experience": "6 años",
+    "description": "Control de versiones avanzado, GitFlow, GitHub Actions, CI/CD y despliegue en GitHub Pages."
+  }
+]

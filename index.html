@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan David | Senior Software Engineer & AI Architect</title>
+  <meta name="description" content="Portafolio profesional de Ingeniería de Software, Inteligencia Artificial, Desarrollo Web, Cloud y DevOps. Proyectos destacados y blog técnico.">
+  <meta name="keywords" content="Software Engineer, Artificial Intelligence, Web Development, Python, FastAPI, Docker, TypeScript, GitHub Pages">
+  <meta name="author" content="Juan David">
+  <link rel="canonical" href="https://juandavid-dev-lang.github.io/">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://juandavid-dev-lang.github.io/">
+  <meta property="og:title" content="Juan David | Senior Software Engineer & AI Architect">
+  <meta property="og:description" content="Portafolio profesional de Ingeniería de Software, Inteligencia Artificial y Blog Técnico.">
+  <meta property="og:image" content="assets/images/og-cover.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Juan David | Senior Software Engineer">
+  <meta name="twitter:description" content="Portafolio profesional de Ingeniería de Software y Blog Técnico.">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#07090e">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Interactive Canvas & Glow Background -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="aurora-bg"></div>
+  <div class="custom-cursor"></div>
+  <div class="reading-progress-bar"></div>
+
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <i class="fas fa-terminal text-gradient"></i>
+        <span>JuanDavid<span class="text-gradient">.dev</span></span>
+        <span class="brand-badge">v2.5</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active" data-i18n="nav_home">Inicio</a></li>
+          <li><a href="proyectos.html" class="nav-link" data-i18n="nav_projects">Proyectos</a></li>
+          <li><a href="blog.html" class="nav-link" data-i18n="nav_blog">Blog</a></li>
+          <li><a href="tecnologias.html" class="nav-link" data-i18n="nav_tech">Tecnologías</a></li>
+          <li><a href="experiencia.html" class="nav-link" data-i18n="nav_experience">Experiencia</a></li>
+          <li><a href="contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn lang-toggle" aria-label="Cambiar Idioma">
+          <span class="lang-code">ES</span>
+        </button>
+        <button class="icon-btn theme-toggle" aria-label="Cambiar Tema">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="icon-btn mobile-toggle" aria-label="Menú Móvil">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero container">
+      <div class="hero-profile-wrapper">
+        <div class="hero-avatar-glow"></div>
+        <img src="https://avatars.githubusercontent.com/u/152912444?v=4" alt="Juan David Profile" class="hero-avatar">
+      </div>
+
+      <div class="hero-badge">
+        <span class="status-dot"></span>
+        <span data-i18n="hero_badge">Disponible para Nuevos Retos & Consultoría</span>
+      </div>
+
+      <h1>
+        <span data-i18n="hero_greeting">Hola, soy</span> <span class="text-gradient">Juan David</span>,<br>
+        <span data-i18n="hero_role">Ingeniero de Software Senior & Arquitecto AI</span>
+      </h1>
+
+      <p class="lead" data-i18n="hero_description">
+        Especializado en diseñar e implementar aplicaciones distribuidas de alto rendimiento, modelos de inteligencia artificial, arquitecturas cloud y soluciones web modernas.
+      </p>
+
+      <div class="btn-group">
+        <a href="proyectos.html" class="btn btn-primary">
+          <i class="fas fa-rocket"></i>
+          <span data-i18n="btn_projects">Explorar Proyectos</span>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary">
+          <i class="fab fa-github"></i>
+          <span data-i18n="btn_github">GitHub Perfil</span>
+        </a>
+        <a href="contacto.html" class="btn btn-outline">
+          <i class="far fa-envelope"></i>
+          <span data-i18n="btn_contact">Contactar</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Stats Dashboard Section -->
+    <section class="container stats-dashboard">
+      <div class="section-header reveal">
+        <span class="subtitle">Métricas en Tiempo Real</span>
+        <h2>Dashboard de Actividad & GitHub API</h2>
+      </div>
+
+      <div class="grid-4 mb-4">
+        <div class="glass-panel stat-card glow-card reveal reveal-delay-1">
+          <i class="fas fa-folder-open stat-icon"></i>
+          <div class="stat-number" id="stat-projects-count">12+</div>
+          <div class="stat-label" data-i18n="stats_projects">Proyectos Realizados</div>
+        </div>
+
+        <div class="glass-panel stat-card glow-card reveal reveal-delay-2">
+          <i class="fab fa-github stat-icon"></i>
+          <div class="stat-number" id="stat-repos-count">--</div>
+          <div class="stat-label" data-i18n="stats_repos">Repositorios Públicos</div>
+        </div>
+
+        <div class="glass-panel stat-card glow-card reveal reveal-delay-3">
+          <i class="fas fa-star stat-icon"></i>
+          <div class="stat-number" id="stat-stars-count">--</div>
+          <div class="stat-label">Estrellas Recibidas</div>
+        </div>
+
+        <div class="glass-panel stat-card glow-card reveal">
+          <i class="fas fa-code-branch stat-icon"></i>
+          <div class="stat-number">1,450+</div>
+          <div class="stat-label" data-i18n="stats_contributions">Contribuciones 2026</div>
+        </div>
+      </div>
+
+      <!-- Language Chart Widget -->
+      <div class="glass-panel reveal" style="padding: 1.75rem; max-width: 900px; margin: 0 auto;">
+        <h3 style="font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fas fa-chart-pie text-gradient"></i>
+          Desglose de Lenguajes Más Utilizados (GitHub REST API)
+        </h3>
+        <div id="github-lang-chart">
+          <div style="text-align: center; color: var(--text-muted); padding: 1rem;">Cargando datos de GitHub API...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="container" style="margin-top: 5rem;">
+      <div class="section-header reveal">
+        <span class="subtitle" data-i18n="projects_subtitle">CASOS DE ESTUDIO Y PROYECTOS DESTACADOS</span>
+        <h2 data-i18n="projects_title">Proyectos Destacados</h2>
+        <p>Una selección de los proyectos más complejos e innovadores en los que he trabajado.</p>
+      </div>
+
+      <div id="featured-projects-container" class="grid-3">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="proyectos.html" class="btn btn-secondary">
+          <span>Ver Catálogo Completo de Proyectos</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Recent Blog Articles Section -->
+    <section class="container" style="margin-top: 5rem;">
+      <div class="section-header reveal">
+        <span class="subtitle" data-i18n="blog_subtitle">PUBLICACIONES, TUTORIALES Y APRENDIZAJES</span>
+        <h2 data-i18n="blog_title">Últimos Artículos Técnicos</h2>
+      </div>
+
+      <div id="recent-posts-container" class="grid-3">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- Contact Teaser Section -->
+    <section class="container" style="margin-top: 6rem;">
+      <div class="glass-panel glow-card reveal" style="padding: 3.5rem 2rem; text-align: center; background: linear-gradient(135deg, rgba(13,17,26,0.9), rgba(56,189,248,0.08));">
+        <h2 style="margin-bottom: 1rem;" data-i18n="contact_title">¿Tienes un Proyecto en Mente?</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;" data-i18n="contact_subtitle">
+          Estoy disponible para consultoría técnica, desarrollo de arquitectura de software y colaboraciones.
+        </p>
+        <a href="contacto.html" class="btn btn-primary">
+          <i class="far fa-paper-plane"></i>
+          <span>Enviar Mensaje</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <a href="index.html" class="nav-brand" style="font-size: 1.1rem;">
+          <i class="fas fa-terminal text-gradient"></i>
+          <span>Alexander<span class="text-gradient">.dev</span></span>
+        </a>
+        <p style="font-size: 0.875rem; margin-top: 0.5rem;" data-i18n="footer_rights">
+          Todos los derechos reservados. Desarrollado con HTML5, CSS3 & JS Vanilla para GitHub Pages.
+        </p>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" class="icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="icon-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com" target="_blank" class="icon-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="mailto:alexander.dev@example.com" class="icon-btn" aria-label="Email"><i class="far fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Volver arriba">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/particles.js"></script>
+  <script src="assets/js/github-api.js"></script>
+  <script src="assets/js/content-loader.js"></script>
+  <script src="assets/js/search-filter.js"></script>
+  <script src="assets/js/ui-effects.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

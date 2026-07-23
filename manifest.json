@@ -1,0 +1,17 @@
+{
+  "name": "Alexander Dev | Senior Software Engineer Portfolio",
+  "short_name": "Alexander.dev",
+  "description": "Portafolio Técnico y Blog de Ingeniería de Software.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07090e",
+  "theme_color": "#38bdf8",
+  "icons": [
+    {
+      "src": "assets/images/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

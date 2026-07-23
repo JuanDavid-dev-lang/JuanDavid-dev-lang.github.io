@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiencia & Carrera | Alexander Dev</title>
+  <meta name="description" content="Línea de tiempo de trayectoria profesional, roles de ingeniería y certificaciones.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="aurora-bg"></div>
+  <div class="custom-cursor"></div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <i class="fas fa-terminal text-gradient"></i>
+        <span>Alexander<span class="text-gradient">.dev</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link" data-i18n="nav_home">Inicio</a></li>
+          <li><a href="proyectos.html" class="nav-link" data-i18n="nav_projects">Proyectos</a></li>
+          <li><a href="blog.html" class="nav-link" data-i18n="nav_blog">Blog</a></li>
+          <li><a href="tecnologias.html" class="nav-link" data-i18n="nav_tech">Tecnologías</a></li>
+          <li><a href="experiencia.html" class="nav-link active" data-i18n="nav_experience">Experiencia</a></li>
+          <li><a href="contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn lang-toggle" aria-label="Cambiar Idioma"><span class="lang-code">ES</span></button>
+        <button class="icon-btn theme-toggle" aria-label="Cambiar Tema"><i class="fas fa-sun"></i></button>
+        <button class="icon-btn mobile-toggle" aria-label="Menú Móvil"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content container">
+    <div class="section-header reveal">
+      <span class="subtitle" data-i18n="exp_subtitle">HISTORIA PROFESIONAL Y CERTIFICACIONES</span>
+      <h2 data-i18n="exp_title">Trayectoria & Experiencia</h2>
+      <p>Línea de tiempo detallada de mi recorrido como Ingeniero de Software.</p>
+    </div>
+
+    <div id="experience-timeline-container">
+      <!-- Rendered by app.js from data/experience.json -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <a href="index.html" class="nav-brand" style="font-size: 1.1rem;">
+          <i class="fas fa-terminal text-gradient"></i>
+          <span>Alexander<span class="text-gradient">.dev</span></span>
+        </a>
+      </div>
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" class="icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/particles.js"></script>
+  <script src="assets/js/content-loader.js"></script>
+  <script src="assets/js/ui-effects.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

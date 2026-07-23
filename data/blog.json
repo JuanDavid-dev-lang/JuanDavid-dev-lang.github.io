@@ -1,0 +1,24 @@
+[
+  {
+    "slug": "docker-render",
+    "title": "Despliegue Profesional de Microservicios con Docker y Render: Guía Paso a Paso",
+    "description": "Aprende a containerizar una arquitectura multiserver y desplegarla gratis en Render utilizando Docker, variables de entorno y CI/CD automático.",
+    "category": "Cloud & DevOps",
+    "tags": ["Docker", "Render", "DevOps", "Cloud", "Linux"],
+    "date": "2026-06-15",
+    "author": "Alexander Dev",
+    "readTime": "8",
+    "difficulty": "Intermedio"
+  },
+  {
+    "slug": "fastapi",
+    "title": "Arquitectura Hexagonal en Python con FastAPI y SQLAlchemy Async",
+    "description": "Cómo estructurar proyectos de alta mantenibilidad desacoplando la lógica de negocio de la base de datos y la capa HTTP.",
+    "category": "Backend",
+    "tags": ["Python", "FastAPI", "Backend", "SQLAlchemy", "Clean Code"],
+    "date": "2026-04-20",
+    "author": "Alexander Dev",
+    "readTime": "12",
+    "difficulty": "Avanzado"
+  }
+]

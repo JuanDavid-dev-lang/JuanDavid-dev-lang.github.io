@@ -1,0 +1,60 @@
+[
+  {
+    "slug": "pipac",
+    "title": "PIPAC - Sistema de Control Agroindustrial Inteligente",
+    "description": "Plataforma IoT y Cloud para el monitoreo automatizado de cultivos, irrigación de precisión y predicción climática con aprendizaje automático.",
+    "category": "IoT & AI",
+    "status": "Completed",
+    "date": "2026-03",
+    "image": "assets/images/placeholder.svg",
+    "technologies": ["Python", "FastAPI", "React", "Docker", "ESP32", "PostgreSQL", "TensorFlow"],
+    "githubUrl": "https://github.com/octocat/pipac-agro-system",
+    "demoUrl": "https://pipac.example.com",
+    "featured": true,
+    "stars": 84,
+    "forks": 19
+  },
+  {
+    "slug": "radiouts",
+    "title": "RadioUTS - Plataforma Streaming de Audio y Podcasts",
+    "description": "Arquitectura de distribución de audio de baja latencia con procesamiento en tiempo real, catálogo de podcasts y transmisión en vivo.",
+    "category": "Backend & Cloud",
+    "status": "Completed",
+    "date": "2025-11",
+    "image": "assets/images/placeholder.svg",
+    "technologies": ["Node.js", "TypeScript", "WebSockets", "Redis", "Docker", "AWS S3", "FFmpeg"],
+    "githubUrl": "https://github.com/octocat/radiouts-stream",
+    "demoUrl": "https://radiouts.example.com",
+    "featured": true,
+    "stars": 62,
+    "forks": 14
+  },
+  {
+    "slug": "esp32-monitor",
+    "title": "ESP32 Industrial Environmental Monitor",
+    "description": "Dispositivo empotrado C++ para telemetría ambiental en tiempo real con sensor de partículas, protocolo MQTT y cifrado TLS seguro.",
+    "category": "Hardware & Embedded",
+    "status": "Completed",
+    "date": "2025-08",
+    "image": "assets/images/placeholder.svg",
+    "technologies": ["C++", "ESP32", "FreeRTOS", "MQTT", "Grafana", "Prometheus"],
+    "githubUrl": "https://github.com/octocat/esp32-env-monitor",
+    "featured": true,
+    "stars": 45,
+    "forks": 9
+  },
+  {
+    "slug": "fastapi-microservices",
+    "title": "Enterprise Microservices Boilerplate",
+    "description": "Arquitectura de microservicios en FastAPI con autenticación JWT, RabbitMQ, Redis Cache, Docker Compose y suite de pruebas pytest.",
+    "category": "Backend",
+    "status": "Completed",
+    "date": "2025-05",
+    "image": "assets/images/placeholder.svg",
+    "technologies": ["Python", "FastAPI", "RabbitMQ", "Redis", "Docker", "PostgreSQL"],
+    "githubUrl": "https://github.com/octocat/fastapi-microservices-template",
+    "featured": false,
+    "stars": 110,
+    "forks": 35
+  }
+]
