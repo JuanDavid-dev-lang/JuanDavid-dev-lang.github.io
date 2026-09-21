@@ -38,6 +38,10 @@
     right: 0;
   }
 
+  .modal-grid {
+    grid-template-columns: 1fr;
+  }
+
   .nav-link {
     padding: var(--space-4);
     font-size: var(--fs-base);

@@ -1,7 +1,7 @@
 ---
 title: "Despliegue Profesional de Microservicios con Docker y Render"
 date: "2026-06-15"
-author: "Alexander Dev"
+author: "Juan David Gómez Vargas"
 category: "Cloud & DevOps"
 ---
 

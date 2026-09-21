@@ -3,22 +3,22 @@
    ========================================================================== */
 
 const githubService = (() => {
-  const CACHE_KEY_STATS = 'jd-github-stats';
-  const CACHE_KEY_LANGS = 'jd-github-langs';
+  const CACHE_KEY_STATS = 'jd-github-stats-v2';
+  const CACHE_KEY_LANGS = 'jd-github-langs-v2';
   const CACHE_TTL = 1 * 60 * 60 * 1000; // 1 hour
 
   // Static Fallbacks in case of API limits or offline
   const STATIC_FALLBACK = {
-    repos: 18,
-    stars: 84,
-    forks: 31,
-    contributions: 1450,
+    repos: 26,
+    stars: 4,
+    forks: 0,
+    followers: 0,
     languages: [
-      { name: 'JavaScript', value: 34.2, color: '#f7df1e' },
-      { name: 'Python', value: 28.5, color: '#3776ab' },
-      { name: 'React (TSX/JSX)', value: 18.1, color: '#61dafb' },
-      { name: 'HTML/CSS', value: 12.4, color: '#e34f26' },
-      { name: 'PHP', value: 6.8, color: '#777bb4' }
+      { name: 'JavaScript', value: 37.5, color: '#f7df1e' },
+      { name: 'CSS', value: 29.2, color: '#563d7c' },
+      { name: 'TypeScript', value: 25.0, color: '#3178c6' },
+      { name: 'Python', value: 4.2, color: '#3776ab' },
+      { name: 'HTML', value: 4.2, color: '#e34f26' }
     ]
   };
 
@@ -69,9 +69,9 @@ const githubService = (() => {
 
       const stats = {
         repos: userData.public_repos,
-        stars: totalStars || STATIC_FALLBACK.stars,
-        forks: totalForks || STATIC_FALLBACK.forks,
-        contributions: STATIC_FALLBACK.contributions // GitHub API doesn't expose contributions directly without GraphQL, so fallback is fine
+        stars: totalStars,
+        forks: totalForks,
+        followers: userData.followers
       };
 
       setCacheData(CACHE_KEY_STATS, stats);
@@ -80,15 +80,8 @@ const githubService = (() => {
       return { stats, languages };
     } catch (err) {
       console.warn('GitHub API failed, using static fallbacks:', err);
-      return {
-        stats: {
-          repos: STATIC_FALLBACK.repos,
-          stars: STATIC_FALLBACK.stars,
-          forks: STATIC_FALLBACK.forks,
-          contributions: STATIC_FALLBACK.contributions
-        },
-        languages: STATIC_FALLBACK.languages
-      };
+      const { languages, ...stats } = STATIC_FALLBACK;
+      return { stats, languages };
     }
   }
 
@@ -133,13 +126,16 @@ const githubService = (() => {
     const { stats, languages } = await fetchStats();
     
     // Set counters
-    const reposEl = document.getElementById('stat-repos-count');
-    const starsEl = document.getElementById('stat-stars-count');
-    const forksEl = document.getElementById('stat-forks-count');
-    
-    if (reposEl) reposEl.textContent = stats.repos + '+';
-    if (starsEl) starsEl.textContent = stats.stars + '+';
-    if (forksEl) forksEl.textContent = stats.forks + '+';
+    const counters = {
+      'stat-repos-count': stats.repos,
+      'stat-stars-count': stats.stars,
+      'stat-forks-count': stats.forks,
+      'stat-followers-count': stats.followers
+    };
+    Object.entries(counters).forEach(([id, value]) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = String(value ?? 0);
+    });
 
     // Render Langs
     const langChartContainer = document.getElementById('github-lang-chart');

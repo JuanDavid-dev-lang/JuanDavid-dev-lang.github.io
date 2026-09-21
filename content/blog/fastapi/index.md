@@ -1,7 +1,7 @@
 ---
 title: "Arquitectura Hexagonal en Python con FastAPI"
 date: "2026-04-20"
-author: "Alexander Dev"
+author: "Juan David Gómez Vargas"
 category: "Backend"
 ---
 

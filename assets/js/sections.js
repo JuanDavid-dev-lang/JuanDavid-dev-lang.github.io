@@ -68,7 +68,7 @@ const sectionsRenderer = (() => {
     let filterHTML = '';
     categories.forEach((cat, idx) => {
       filterHTML += `
-        <button class="tech-filter-btn ${idx === 0 ? 'active' : ''}" data-category="${cat}">
+        <button class="tech-filter-btn ${idx === 0 ? 'active' : ''}" data-category="${cat}" ${idx === 0 ? 'data-i18n="tech_all"' : ''}>
           ${cat}
         </button>
       `;

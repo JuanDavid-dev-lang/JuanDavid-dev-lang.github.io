@@ -1,7 +1,7 @@
 ---
 title: "ESP32 Industrial Environmental Monitor"
 date: "2025-08-10"
-author: "Alexander Dev"
+author: "Juan David Gómez Vargas"
 category: "Hardware & Embedded"
 status: "Completed"
 ---

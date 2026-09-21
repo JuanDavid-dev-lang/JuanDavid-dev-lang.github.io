@@ -12,13 +12,9 @@ Un sitio web de portafolio profesional y blog técnico completamente estático, 
   - Dark Mode por defecto con selector opcional de Light Mode.
   - Efectos de Glassmorphism, Aurora Glow y canvas interactivo de partículas.
   - Micro-animaciones con `IntersectionObserver` y seguimiento de cursor.
-- **Buscador & Filtros Multidimensionales**: Búsqueda instantánea en tiempo real por título, descripción, tecnologías o palabras clave. Filtrado por etiquetas y 3 modos de vista (Grid, Repositorios estilo GitHub y Timeline cronológica).
-- **Consumo Dinámico de GitHub REST API**: Muestra automáticamente las estadísticas de tus repositorios públicos, estrellas totales y distribución de lenguajes de programación.
-- **Lector de Markdown Avanzado**:
-  - Tabla de Contenidos (TOC) generada automáticamente.
-  - Barra superior de progreso de lectura.
-  - Resaltado de código y botón de copiar al portapapeles.
-  - Visor de imágenes en Lightbox modal.
+- **Filtro de Tecnologías por Categoría**: Frontend, Backend, Bases de Datos, IA & ML, DevOps & Cloud y Herramientas.
+- **Consumo Dinámico de GitHub REST API**: Muestra automáticamente repositorios públicos, estrellas, forks, seguidores y distribución de lenguajes (con caché local de 1 hora y valores de respaldo si la API no responde).
+- **Contenido en Markdown**: Los casos de estudio y artículos se escriben en `content/**/index.md` y se renderizan en el navegador con [marked](https://marked.js.org/).
 - **Internacionalización (i18n)**: Alterna entre **Español (ES)** e **Inglés (EN)** de forma instantánea.
 - **SEO & PWA Ready**: Meta etiquetas Open Graph, Twitter Cards, `manifest.json`, `sitemap.xml`, `robots.txt` y Service Worker `sw.js` para caché offline.
 
@@ -28,81 +24,52 @@ Un sitio web de portafolio profesional y blog técnico completamente estático, 
 
 ```text
 /
-├── index.html                  # Landing Page / Hero, Stats Dashboard, Featured Projects
-├── proyectos.html              # Catálogo completo de Proyectos (Filtros, Búsqueda, Vistas)
-├── proyecto.html               # Lector dinámico de Caso de Estudio (Markdown)
-├── blog.html                   # Índice del Blog Técnico
-├── articulo.html               # Lector de Artículo de Blog (TOC, Progress bar)
-├── tecnologias.html            # Matriz interactiva de Tecnologías y Habilidades
-├── experiencia.html            # Línea de tiempo de Carrera y Certificaciones
-├── contacto.html               # Formulario interactivo de Contacto
+├── index.html                  # Landing SPA: Hero, Sobre Mí, Servicios, Tecnologías, Trayectoria,
+│                               # Proyectos (modal), Blog, GitHub Stats y Contacto
+├── proyecto.html               # Caso de estudio de un proyecto (?id=<slug>, renderiza Markdown)
+├── articulo.html               # Artículo del blog (?id=<slug>, renderiza Markdown)
 ├── 404.html                    # Página de error 404
 ├── manifest.json               # Configuración de PWA
 ├── sitemap.xml                 # Mapa del sitio SEO
 ├── robots.txt                  # Instrucciones para buscadores
-├── sw.js                       # Service Worker para PWA offline
+├── sw.js                       # Service Worker (network-first, fallback offline)
 ├── assets/
 │   ├── css/
-│   │   ├── main.css            # Tokens de diseño, tipografía y variables HSL
-│   │   ├── components.css      # Componentes UI (Cards, Navbar, Timeline, Buttons)
-│   │   └── animations.css      # Keyframes, Partículas y Aurora Background
+│   │   ├── design-system.css   # Tokens de diseño, tipografía, tema claro/oscuro
+│   │   ├── components.css      # Navbar, botones, cards, modal, cursor, canvas de partículas
+│   │   ├── sections.css        # Estilos por sección de la landing
+│   │   ├── animations.css      # Keyframes, scroll reveal, aurora
+│   │   ├── responsive.css      # Media queries (mobile first)
+│   │   └── markdown.css        # Tipografía del contenido Markdown (blog / casos de estudio)
 │   └── js/
-│       ├── config.js           # Configuración del usuario y diccionario i18n
+│       ├── config.js           # SITE_CONFIG (datos personales, Formspree) y diccionario i18n
 │       ├── theme.js            # Tema Claro/Oscuro
-│       ├── i18n.js             # Motor de Idiomas
+│       ├── i18n.js             # Motor de Idiomas ES/EN
+│       ├── navigation.js       # Navbar, menú móvil, scroll suave, sección activa
 │       ├── particles.js        # Canvas de Partículas
-│       ├── github-api.js       # Integración con la API de GitHub REST
-│       ├── content-loader.js   # Parser de Markdown (marked) + Frontmatter
-│       ├── search-filter.js    # Buscador y Filtros en tiempo real
-│       ├── ui-effects.js       # Efectos UI (TOC, Lightbox, Copy Snippet)
-│       └── app.js              # Controlador principal
+│       ├── github-api.js       # Estadísticas en vivo desde la API REST de GitHub
+│       ├── sections.js         # Render dinámico de secciones desde data/*.json
+│       ├── modal.js            # Modal de detalle de proyecto
+│       ├── contact.js          # Validación y envío del formulario (Formspree o mailto)
+│       ├── animations.js       # Scroll reveal, contadores, cursor, parallax
+│       └── app.js              # Router principal (landing / proyecto / artículo)
 ├── content/
-│   ├── projects/               # Markdown de proyectos
-│   └── blog/                   # Markdown de artículos
+│   ├── projects/<slug>/index.md   # Markdown de casos de estudio
+│   └── blog/<slug>/index.md       # Markdown de artículos
 └── data/
-    ├── projects.json           # Índice de proyectos
+    ├── projects.json           # Proyectos destacados
+    ├── other-projects.json     # Otros proyectos y experimentos
     ├── blog.json               # Índice del blog
     ├── technologies.json       # Habilidades técnicas
-    └── experience.json         # Trayectoria profesional
+    ├── experience.json         # Trayectoria profesional
+    └── services.json           # Servicios ofrecidos
 ```
 
----
+## ⚙️ Configuración Personal
 
-## 📝 Cómo Agregar un Nuevo Proyecto
+Edita `assets/js/config.js`:
 
-1. Crea la carpeta en `content/projects/<mi-proyecto>/` y agrega `index.md`:
-   ```markdown
-   ---
-   title: "Mi Nuevo Proyecto"
-   date: "2026-07-23"
-   author: "Tu Nombre"
-   category: "Backend & AI"
-   status: "Completed"
-   ---
-   # Mi Nuevo Proyecto
-   Descripción detallada y arquitectura...
-   ```
-2. Agrega la entrada a `data/projects.json`:
-   ```json
-   {
-     "slug": "mi-proyecto",
-     "title": "Mi Nuevo Proyecto",
-     "description": "Breve descripción para la tarjeta...",
-     "category": "Backend & AI",
-     "status": "Completed",
-     "date": "2026-07",
-     "image": "assets/images/placeholder.svg",
-     "technologies": ["Python", "FastAPI", "Docker"],
-     "githubUrl": "https://github.com/tu-usuario/mi-proyecto",
-     "featured": true
-   }
-   ```
+- `email`, `social.linkedin`: datos de contacto que se muestran en la página.
+- `contact.formspreeEndpoint`: endpoint de [Formspree](https://formspree.io) para recibir mensajes del formulario. Si se deja vacío, el formulario abre el cliente de correo con el mensaje prellenado (`mailto:`).
 
----
 
-## 🚀 Despliegue en GitHub Pages
-
-1. Sube este repositorio a tu cuenta de GitHub (ejemplo: `usuario.github.io` o un repositorio regular).
-2. Ve a **Settings -> Pages** en tu repositorio de GitHub.
-3. En **Source**, selecciona `Deploy from a branch` y elige la rama `main` (directorio `/root`).
-4. Haz clic en **Save**. ¡Tu sitio estará en vivo en pocos segundos en `https://tu-usuario.github.io`!

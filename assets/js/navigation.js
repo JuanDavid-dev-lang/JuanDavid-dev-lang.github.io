@@ -11,17 +11,13 @@ const navigationManager = (() => {
 
     // Sticky Navbar on Scroll
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+      if (navbar) {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
       }
 
       // Back to top visibility
-      if (window.scrollY > 500) {
-        backToTopBtn.classList.add('visible');
-      } else {
-        backToTopBtn.classList.remove('visible');
+      if (backToTopBtn) {
+        backToTopBtn.classList.toggle('visible', window.scrollY > 500);
       }
 
       // Reading progress
@@ -89,7 +85,7 @@ const navigationManager = (() => {
       anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
-        const target = document.querySelector(targetId);
+        const target = document.getElementById(targetId.slice(1));
         if (target) {
           e.preventDefault();
           const offset = 72; // Header height

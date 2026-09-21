@@ -19,6 +19,12 @@ const SITE_CONFIG = {
     email: "mailto:juandavid@example.com"
   },
 
+  contact: {
+    // Create a form at https://formspree.io and paste its endpoint here
+    // (e.g. "https://formspree.io/f/xxxxxxxx"). Empty = fallback to mailto.
+    formspreeEndpoint: ""
+  },
+
   stats: {
     yearsProgramming: "3+",
     technologiesMastered: "25+",
@@ -124,6 +130,7 @@ const I18N = {
     github_repos: "Repositorios",
     github_stars: "Estrellas",
     github_forks: "Forks",
+    github_followers: "Seguidores",
     github_langs: "Lenguajes",
     github_lang_title: "Lenguajes Más Utilizados",
 
@@ -231,6 +238,7 @@ const I18N = {
     github_repos: "Repositories",
     github_stars: "Stars",
     github_forks: "Forks",
+    github_followers: "Followers",
     github_langs: "Languages",
     github_lang_title: "Most Used Languages",
 

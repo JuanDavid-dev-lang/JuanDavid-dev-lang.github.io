@@ -26,28 +26,33 @@ const contactManager = (() => {
 
       if (!isNameValid || !isEmailValid || !isMsgValid) return;
 
+      const payload = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        message: messageInput.value.trim()
+      };
+
+      // Static GitHub Pages has no backend: without a Formspree endpoint
+      // configured in SITE_CONFIG we hand the message to the mail client.
+      const formspreeEndpoint = SITE_CONFIG.contact && SITE_CONFIG.contact.formspreeEndpoint;
+      if (!formspreeEndpoint) {
+        openMailClient(payload);
+        return;
+      }
+
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
 
       try {
-        // Since we are deploying to static GitHub Pages, we direct to Formspree
-        // Formspree payload structure: { name, email, message }
-        // The user can change the endpoint URL or key in config later
-        const formspreeEndpoint = `https://formspree.io/f/mqaznkbk`; // Static random endpoint as a placeholder or real if changed
-
         const res = await fetch(formspreeEndpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: JSON.stringify({
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            message: messageInput.value.trim()
-          })
+          body: JSON.stringify(payload)
         });
 
         if (res.ok) {
@@ -68,6 +73,12 @@ const contactManager = (() => {
         submitBtn.innerHTML = originalText;
       }
     });
+  }
+
+  function openMailClient({ name, email, message }) {
+    const subject = encodeURIComponent(`Contacto desde el portafolio: ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} <${email}>`);
+    window.location.href = `mailto:${SITE_CONFIG.email}?subject=${subject}&body=${body}`;
   }
 
   function validateField(input, checkFn, errorKey) {

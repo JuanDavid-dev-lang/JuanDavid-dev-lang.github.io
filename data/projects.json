@@ -11,7 +11,21 @@
     "image": "assets/images/placeholder.svg",
     "icon": "fas fa-broadcast-tower",
     "color": "#38bdf8",
-    "technologies": ["React", "Vite", "Express.js", "Node.js", "MongoDB Atlas", "Supabase", "PostgreSQL", "pgvector", "Socket.IO", "Spotify API", "YouTube API", "RadioBoss TCP/IP", "Docker"],
+    "technologies": [
+      "React",
+      "Vite",
+      "Express.js",
+      "Node.js",
+      "MongoDB Atlas",
+      "Supabase",
+      "PostgreSQL",
+      "pgvector",
+      "Socket.IO",
+      "Spotify API",
+      "YouTube API",
+      "RadioBoss TCP/IP",
+      "Docker"
+    ],
     "architecture": "Arquitectura híbrida microservicios con frontend SPA en React, backend REST/WebSocket en Express.js, doble base de datos (MongoDB Atlas + Supabase PostgreSQL), integración con APIs externas y contenedorización Docker.",
     "features": [
       "Streaming de audio en tiempo real",
@@ -27,11 +41,11 @@
       "Configuración dinámica del sistema",
       "Sincronización en red multi-dispositivo"
     ],
-    "githubUrl": "https://github.com/JuanDavid-dev-lang",
+    "githubUrl": "",
     "demoUrl": "",
     "featured": true,
-    "stars": 48,
-    "forks": 12
+    "stars": 0,
+    "forks": 0
   },
   {
     "slug": "pipac",
@@ -45,7 +59,20 @@
     "image": "assets/images/placeholder.svg",
     "icon": "fas fa-brain",
     "color": "#818cf8",
-    "technologies": ["Python", "FastAPI", "Scikit-Learn", "XGBoost", "Pandas", "NumPy", "GeoPandas", "Plotly", "Folium", "PostgreSQL", "Docker", "Machine Learning"],
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "Scikit-Learn",
+      "XGBoost",
+      "Pandas",
+      "NumPy",
+      "GeoPandas",
+      "Plotly",
+      "Folium",
+      "PostgreSQL",
+      "Docker",
+      "Machine Learning"
+    ],
     "architecture": "Arquitectura modular con API REST en FastAPI, pipeline de datos en Python (Pandas/NumPy), motor de ML (Scikit-Learn/XGBoost), visualización geoespacial (Folium/Plotly) y base de datos PostgreSQL, todo contenedorizado en Docker.",
     "features": [
       "Análisis de datos criminales",
@@ -59,11 +86,11 @@
       "Pipeline automatizado de datos",
       "API REST documentada con FastAPI"
     ],
-    "githubUrl": "https://github.com/JuanDavid-dev-lang",
+    "githubUrl": "https://github.com/JuanDavid-dev-lang/PIPAC",
     "demoUrl": "",
     "featured": true,
-    "stars": 35,
-    "forks": 8
+    "stars": 3,
+    "forks": 0
   },
   {
     "slug": "inventariopro-v2",
@@ -77,7 +104,17 @@
     "image": "assets/images/placeholder.svg",
     "icon": "fas fa-boxes-stacked",
     "color": "#34d399",
-    "technologies": ["React", "PHP", "MySQL", "Python", "Apache Spark", "Docker", "REST API", "Machine Learning", "Excel Import"],
+    "technologies": [
+      "React",
+      "PHP",
+      "MySQL",
+      "Python",
+      "Apache Spark",
+      "Docker",
+      "REST API",
+      "Machine Learning",
+      "Excel Import"
+    ],
     "architecture": "Arquitectura multi-capa con frontend SPA en React, API REST en PHP/Laravel, base de datos MySQL, motor de predicción en Python con Apache Spark para procesamiento distribuido, todo orquestado con Docker Compose.",
     "features": [
       "Gestión completa de inventario (CRUD)",
@@ -91,10 +128,10 @@
       "API REST documentada",
       "Contenedorización con Docker"
     ],
-    "githubUrl": "https://github.com/JuanDavid-dev-lang",
+    "githubUrl": "https://github.com/JuanDavid-dev-lang/inventario",
     "demoUrl": "",
     "featured": true,
-    "stars": 29,
-    "forks": 6
+    "stars": 0,
+    "forks": 0
   }
 ]

@@ -66,24 +66,28 @@ const modalManager = (() => {
     const featuresHTML = project.features.map(f => `<li><i class="fas fa-check-circle" style="color:var(--accent-cyan); margin-right: var(--space-2);"></i>${f}</li>`).join('');
 
     // Setup action buttons (Live Demo or GitHub)
-    let buttonsHTML = '';
+    let buttonsHTML = `
+      <a href="proyecto.html?id=${encodeURIComponent(project.slug)}" class="btn btn-primary btn-sm">
+        <i class="fas fa-book-open"></i> Caso de Estudio
+      </a>
+    `;
     if (project.githubUrl) {
       buttonsHTML += `
-        <a href="${project.githubUrl}" target="_blank" class="btn btn-secondary btn-sm">
-          <i class="fab fa-github"></i> GitHub Código
+        <a href="${project.githubUrl}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+          <i class="fab fa-github"></i> Código
         </a>
       `;
     }
     if (project.demoUrl) {
       buttonsHTML += `
-        <a href="${project.demoUrl}" target="_blank" class="btn btn-primary btn-sm">
-          <i class="fas fa-external-link-alt"></i> Demo En Vivo
+        <a href="${project.demoUrl}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+          <i class="fas fa-external-link-alt"></i> Demo
         </a>
       `;
     }
 
     bodyContent.innerHTML = `
-      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-8); @media (max-width: 768px) { grid-template-columns: 1fr; }">
+      <div class="modal-grid">
         <div>
           <h3 style="font-size: var(--fs-md); margin-bottom: var(--space-3); color: var(--accent-cyan);">Descripción General</h3>
           <p style="font-size: var(--fs-sm); line-height: 1.8; margin-bottom: var(--space-6); text-align: justify;">${project.longDescription}</p>
